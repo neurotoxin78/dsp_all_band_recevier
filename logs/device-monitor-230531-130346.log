@@ -1,0 +1,28 @@
+[   734][E][WiFiUdp.cpp:172] beginPacket(): could not get host from dns: 11
+[   736][E][WiFiUdp.cpp:185] endPacket(): could not send data: 118
+WiFi lost connection, reconnect...
+[  1761][E][WiFiUdp.cpp:172] beginPacket(): could not get host from dns: 11
+[  1762][E][WiFiUdp.cpp:185] endPacket(): could not send data: 118
+[  3034][E][WiFiUdp.cpp:172] beginPacket(): could not get host from dns: 11
+[  3035][E][WiFiUdp.cpp:185] endPacket(): could not send data: 118
+[  4328][E][WiFiUdp.cpp:172] beginPacket(): could not get host from dns: 11
+[  4329][E][WiFiUdp.cpp:185] endPacket(): could not send data: 118
+[  5601][E][WiFiUdp.cpp:172] beginPacket(): could not get host from dns: 11
+[  5602][E][WiFiUdp.cpp:185] endPacket(): could not send data: 118
+[  6879][E][WiFiUdp.cpp:172] beginPacket(): could not get host from dns: 11
+[  6880][E][WiFiUdp.cpp:185] endPacket(): could not send data: 118
+[  8153][E][WiFiUdp.cpp:172] beginPacket(): could not get host from dns: 11
+[  8154][E][WiFiUdp.cpp:185] endPacket(): could not send data: 118
+WiFi lost connection, reconnect...
+10.175.1.7
+WiFi lost connection, reconnect...
+10.175.1.7
+WiFi lost connection, reconnect...
+10.175.1.7
+WiFi lost connection, reconnect...
+WiFi lost connection, reconnect...
+10.175.1.7
+WiFi lost connection, reconnect...
+10.175.1.7
+WiFi lost connection, reconnect...
+10.175.1.7

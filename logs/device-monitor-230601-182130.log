@@ -1,0 +1,33 @@
+[   776][E][Wire.cpp:481] requestFrom(): NULL buffer pointer
+[   777][E][Wire.cpp:557] read(): NULL RX buffer pointer
+[   777][E][Wire.cpp:422] beginTransmission(): could not acquire lock
+[   779][E][WiFiUdp.cpp:172] beginPacket(): could not get host from dns: 11
+[   789][E][WiFiUdp.cpp:185] endPacket(): could not send data: 118
+[   782][E][Wire.cpp:526] write(): NULL TX buffer pointer
+[   800][E][Wire.cpp:526] write(): NULL TX buffer pointer
+[   805][E][Wire.cpp:448] endTransmission(): NULL TX buffer pointer
+The SI473X / SI474X I2C address is 0x11
+[  1818][E][WiFiUdp.cpp:172] beginPacket(): could not get host from dns: 11
+[  1819][E][WiFiUdp.cpp:185] endPacket(): could not send data: 118
+WiFi lost connection, reconnect...
+[  3094][E][WiFiUdp.cpp:172] beginPacket(): could not get host from dns: 11
+[  3096][E][WiFiUdp.cpp:185] endPacket(): could not send data: 118
+WiFi lost connection, reconnect...
+[  4536][E][WiFiUdp.cpp:172] beginPacket(): could not get host from dns: 11
+[  4537][E][WiFiUdp.cpp:185] endPacket(): could not send data: 118
+10.175.1.7
+WiFi lost connection, reconnect...
+[  5812][E][WiFiUdp.cpp:172] beginPacket(): could not get host from dns: 11
+[  5813][E][WiFiUdp.cpp:185] endPacket(): could not send data: 118
+[  7085][E][WiFiUdp.cpp:172] beginPacket(): could not get host from dns: 11
+[  7086][E][WiFiUdp.cpp:185] endPacket(): could not send data: 118
+[  8358][E][WiFiUdp.cpp:172] beginPacket(): could not get host from dns: 11
+[  8359][E][WiFiUdp.cpp:185] endPacket(): could not send data: 118
+[  9633][E][WiFiUdp.cpp:172] beginPacket(): could not get host from dns: 11
+[  9634][E][WiFiUdp.cpp:185] endPacket(): could not send data: 118
+WiFi lost connection, reconnect...
+[ 10956][E][WiFiUdp.cpp:172] beginPacket(): could not get host from dns: 11
+[ 10957][E][WiFiUdp.cpp:185] endPacket(): could not send data: 118
+[ 12229][E][WiFiUdp.cpp:172] beginPacket(): could not get host from dns: 11
+[ 12230][E][WiFiUdp.cpp:185] endPacket(): could not send data: 118
+10.175.1.7

@@ -1,0 +1,11 @@
+10.175.1.7
+[   777][E][Wire.cpp:481] requestFrom(): NULL buffer pointer
+[   778][E][Wire.cpp:557] read(): NULL RX buffer pointer
+[   780][E][Wire.cpp:422] beginTransmission(): could not acquire lock
+[   784][E][Wire.cpp:526] write(): NULL TX buffer pointer
+[   789][E][Wire.cpp:526] write(): NULL TX buffer pointer
+[   794][E][Wire.cpp:448] endTransmission(): NULL TX buffer pointer
+[   800][E][Wire.cpp:481] requestFrom(): NULL buffer pointer
+[   805][E][Wire.cpp:557] read(): NULL RX buffer pointer
+[   810][E][Wire.cpp:481] requestFrom(): NULL buffer pointer
+The SI473X / SI474X I2C address is 0x11

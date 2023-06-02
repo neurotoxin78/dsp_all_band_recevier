@@ -1,0 +1,10 @@
+10.175.1.7
+[   775][E][esp32-hal-cpu.c:110] addApbChangeCallback(): duplicate func=0x400ff1b0 arg=0x3ffbdcf8
+[   775][E][Wire.cpp:481] requestFrom(): NULL buffer pointer
+[   780][E][Wire.cpp:557] read(): NULL RX buffer pointer
+[   785][E][Wire.cpp:422] beginTransmission(): could not acquire lock
+[   791][E][Wire.cpp:526] write(): NULL TX buffer pointer
+[   796][E][Wire.cpp:526] write(): NULL TX buffer pointer
+[   801][E][Wire.cpp:448] endTransmission(): NULL TX buffer pointer
+[   808][E][Wire.cpp:481] requestFrom(): NULL buffer pointer
+The SI473X / SI474X I2C address is 0x11

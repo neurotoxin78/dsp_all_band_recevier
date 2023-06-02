@@ -1,0 +1,3 @@
+[   738][E][WiFiUdp.cpp:172] beginPacket(): could not get host from dns: 11
+[   739][E][WiFiUdp.cpp:185] endPacket(): could not send data: 118
+10.175.1.7

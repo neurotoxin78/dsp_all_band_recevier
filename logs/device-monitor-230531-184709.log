@@ -1,0 +1,23 @@
+10.175.1.7
+The SI473X / SI474X I2C address is 0x11
+Click
+Encoder
+1
+2
+3
+4
+Click
+Encoder
+[User]	(51.160, +51160)	 scan_event_handler: Clicked 	(in events.cpp line #9)
+Click
+Encoder
+[User]	(64.860, +13700)	 scan_event_handler: Clicked 	(in events.cpp line #9)
+Click
+Encoder
+[User]	(71.230, +6370)	 scan_event_handler: Clicked 	(in events.cpp line #9)
+Click
+Encoder
+[User]	(76.550, +5320)	 scan_event_handler: Clicked 	(in events.cpp line #9)
+Encoder
+Click
+[User]	(80.830, +4280)	 scan_event_handler: Clicked 	(in events.cpp line #9)

@@ -1,0 +1,35 @@
+[   777][E][Wire.cpp:481] requestFrom(): NULL buffer pointer
+[   778][E][Wire.cpp:557] read(): NULL RX buffer pointer
+[   778][E][Wire.cpp:422] beginTransmission(): could not acquire lock
+[   780][E][WiFiUdp.cpp:172] beginPacket(): could not get host from dns: 11
+[   791][E][WiFiUdp.cpp:185] endPacket(): could not send data: 118
+[   783][E][Wire.cpp:526] write(): NULL TX buffer pointer
+[   801][E][Wire.cpp:526] write(): NULL TX buffer pointer
+[   806][E][Wire.cpp:448] endTransmission(): NULL TX buffer pointer
+The SI473X / SI474X I2C address is 0x11
+[  1818][E][WiFiUdp.cpp:172] beginPacket(): could not get host from dns: 11
+[  1819][E][WiFiUdp.cpp:185] endPacket(): could not send data: 118
+[  3093][E][WiFiUdp.cpp:172] beginPacket(): could not get host from dns: 11
+[  3095][E][WiFiUdp.cpp:185] endPacket(): could not send data: 118
+[  4538][E][WiFiUdp.cpp:172] beginPacket(): could not get host from dns: 11
+[  4539][E][WiFiUdp.cpp:185] endPacket(): could not send data: 118
+[  5811][E][WiFiUdp.cpp:172] beginPacket(): could not get host from dns: 11
+[  5812][E][WiFiUdp.cpp:185] endPacket(): could not send data: 118
+[  7084][E][WiFiUdp.cpp:172] beginPacket(): could not get host from dns: 11
+[  7085][E][WiFiUdp.cpp:185] endPacket(): could not send data: 118
+WiFi lost connection, reconnect...
+10.175.1.7
+WiFi lost connection, reconnect...
+10.175.1.7
+WiFi lost connection, reconnect...
+WiFi lost connection, reconnect...
+WiFi lost connection, reconnect...
+10.175.1.7
+WiFi lost connection, reconnect...
+[207838][E][WiFiUdp.cpp:185] endPacket(): could not send data: 118
+[209110][E][WiFiUdp.cpp:185] endPacket(): could not send data: 118
+[210390][E][WiFiUdp.cpp:185] endPacket(): could not send data: 118
+[211660][E][WiFiUdp.cpp:185] endPacket(): could not send data: 118
+WiFi lost connection, reconnect...
+[212937][E][WiFiUdp.cpp:185] endPacket(): could not send data: 118
+[214208][E][WiFiUdp.cpp:185] endPacket(): could not send data: 118
