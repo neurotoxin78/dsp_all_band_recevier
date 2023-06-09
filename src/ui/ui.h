@@ -45,11 +45,25 @@ extern lv_obj_t * ui_bandwidthLabel;
 extern lv_obj_t * ui_stereoLabel;
 extern lv_obj_t * ui_AGCLabel;
 extern lv_obj_t * ui_volumeBar;
+extern lv_obj_t * ui_rssiBar;
 extern lv_obj_t * ui_RDSLabel;
 extern lv_obj_t * ui____initial_actions0;
 
 extern lv_style_t style_bg;
+extern lv_style_t style_bar_bg;
+extern lv_style_t style_indic_rssi;
+extern lv_style_t encoder_mode_style;
 extern lv_style_t style_indic;
+
+LV_FONT_DECLARE(ui_font_FontDSEG42);
+LV_FONT_DECLARE(ui_font_FontDSEG48);
+LV_FONT_DECLARE(ui_font_FontDSEG64);
+LV_FONT_DECLARE(ui_font_FontDSEG20);
+LV_FONT_DECLARE(ui_font_FontDSEG14);
+LV_FONT_DECLARE(ui_font_FontDSEG32);
+LV_FONT_DECLARE(ui_font_FontDSEG16);
+LV_FONT_DECLARE(ui_font_FontDSEG18);
+
 
 void ui_init(void);
 

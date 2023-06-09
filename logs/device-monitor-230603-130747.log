@@ -1,0 +1,25 @@
+10.175.1.7
+[   778][E][Wire.cpp:481] requestFrom(): NULL buffer pointer
+[   781][E][Wire.cpp:557] read(): NULL RX buffer pointer
+[   781][E][Wire.cpp:422] beginTransmission(): could not acquire lock
+[   786][E][Wire.cpp:526] write(): NULL TX buffer pointer
+[   791][E][Wire.cpp:526] write(): NULL TX buffer pointer
+[   796][E][Wire.cpp:448] endTransmission(): NULL TX buffer pointer
+[   803][E][Wire.cpp:481] requestFrom(): NULL buffer pointer
+[   808][E][Wire.cpp:557] read(): NULL RX buffer pointer
+The SI473X / SI474X I2C address is 0x11
+[Error]	(0.725, +725)	 _lv_inv_area: detected modifying dirty areas in render 	(in lv_refr.c line #212)
+[Error]	(3.775, +3050)	 _lv_inv_area: detected modifying dirty areas in render 	(in lv_refr.c line #212)
+[Error]	(3.780, +3055)	 _lv_inv_area: detected modifying dirty areas in render 	(in lv_refr.c line #212)
+[Error]	(18.490, +14710)	 _lv_inv_area: detected modifying dirty areas in render 	(in lv_refr.c line #212)
+[Error]	(19.565, +1075)	 _lv_inv_area: detected modifying dirty areas in render 	(in lv_refr.c line #212)
+[Error]	(20.630, +1065)	 _lv_inv_area: detected modifying dirty areas in render 	(in lv_refr.c line #212)
+[Error]	(21.710, +1080)	 _lv_inv_area: detected modifying dirty areas in render 	(in lv_refr.c line #212)
+[Error]	(22.775, +1065)	 _lv_inv_area: detected modifying dirty areas in render 	(in lv_refr.c line #212)
+[Error]	(24.935, +2160)	 _lv_inv_area: detected modifying dirty areas in render 	(in lv_refr.c line #212)
+[Error]	(39.865, +14930)	 _lv_inv_area: detected modifying dirty areas in render 	(in lv_refr.c line #212)
+[Error]	(40.945, +1080)	 _lv_inv_area: detected modifying dirty areas in render 	(in lv_refr.c line #212)
+[Error]	(43.050, +2105)	 _lv_inv_area: detected modifying dirty areas in render 	(in lv_refr.c line #212)
+[Error]	(44.125, +1075)	 _lv_inv_area: detected modifying dirty areas in render 	(in lv_refr.c line #212)
+[Error]	(45.190, +1065)	 _lv_inv_area: detected modifying dirty areas in render 	(in lv_refr.c line #212)
+[Error]	(46.250, +1060)	 _lv_inv_area: detected modifying dirty areas in render 	(in lv_refr.c line #212)

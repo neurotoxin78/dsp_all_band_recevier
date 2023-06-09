@@ -1,3 +1,11 @@
 screens/ui_infoScreen.c
 ui.c
 ui_helpers.c
+fonts/ui_font_FontDSEG42.c
+fonts/ui_font_FontDSEG48.c
+fonts/ui_font_FontDSEG64.c
+fonts/ui_font_FontDSEG20.c
+fonts/ui_font_FontDSEG14.c
+fonts/ui_font_FontDSEG32.c
+fonts/ui_font_FontDSEG16.c
+fonts/ui_font_FontDSEG18.c

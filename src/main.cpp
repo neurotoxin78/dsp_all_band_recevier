@@ -57,5 +57,5 @@ void loop()
   xSemaphoreTake(lv_update_mutex, portMAX_DELAY);
   lv_timer_handler(); /* let the GUI do its work */
   xSemaphoreGive(lv_update_mutex);
-  vTaskDelay(1000 / portTICK_PERIOD_MS);
+  vTaskDelay(5 / portTICK_PERIOD_MS);
 }

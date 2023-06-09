@@ -9,12 +9,24 @@
 #include <freertos/task.h>
 #include <SI4735.h>
 #include "receiver_tools.h"
+#include "GyverButton.h"
+
+GButton button_white(BTN_WHITE);
+GButton button_blue(BTN_BLUE);
+GButton button_yellow(BTN_YELLOW);
+GButton button_red(BTN_RED);
 
 // #include <freertos/timers.h>
 #define AUTO_RESET_ENCODER_MODE_PERIOD pdMS_TO_TICKS(5000)
+#define RDS_PERIOD pdMS_TO_TICKS(20000)
+#define INDEV_TICK_PERIOD pdMS_TO_TICKS(10)
 
 TimerHandle_t xAutoResetEncoderModeTimer;
 BaseType_t xAutoResetEncoderModeTimerStarted;
+TimerHandle_t xRDSTimer;
+BaseType_t xRDSTimerStarted;
+TimerHandle_t xIndevTimer;
+BaseType_t xIndevTimerStarted;
 
 SI4735 rx;
 
@@ -56,16 +68,24 @@ int getStrength()
 
 void heartbeat_Task(void *parameter)
 {
-
+  pinMode(LED, OUTPUT);
   for (;;)
   {
+    digitalWrite(LED, LOW);
     vTaskDelay(100 / portTICK_PERIOD_MS);
+    digitalWrite(LED, HIGH);
+    vTaskDelay(100 / portTICK_PERIOD_MS);
+    digitalWrite(LED, LOW);
+    vTaskDelay(100 / portTICK_PERIOD_MS);
+    digitalWrite(LED, HIGH);
+    vTaskDelay(1800 / portTICK_PERIOD_MS);
   }
   vTaskDelete(NULL);
 }
 
 void encoder_Task(void *parameter)
 {
+  setupButtons();
   enc1.setType(TYPE2);
   xAutoResetEncoderModeTimer = xTimerCreate(
       /* Text name for the software timer - not used by FreeRTOS. */
@@ -79,9 +99,28 @@ void encoder_Task(void *parameter)
       /* The callback function to be used by the software timer being created. */
       prvAutoResetEncoderModeTimerCallback);
 
+  xIndevTimer = xTimerCreate(
+      /* Text name for the software timer - not used by FreeRTOS. */
+      "Indev Tick Timer",
+      /* The software timer's period in ticks. */
+      INDEV_TICK_PERIOD,
+      /* Setting uxAutoRealod to pdTRUE creates an auto-reload timer. */
+      pdTRUE,
+      /* This example does not use the timer id. */
+      0,
+      /* The callback function to be used by the software timer being created. */
+      prvIndevTimerCallback);
+  xIndevTimerStarted = xTimerStart(xIndevTimer, 0);
   for (;;)
   {
-    enc1.tick();
+    if (button_red.isClick())
+    {
+      changeBand();
+    }
+    if (button_yellow.isClick())
+    {
+      changeStep();
+    }
     if (enc1.isRight())
     {
       switch (current_encoder_mode)
@@ -130,11 +169,11 @@ void encoder_Task(void *parameter)
     }
     if (enc1.isLeftH())
     {
-      changeEncoderMode();
+      
     }
     if (enc1.isRightH())
     {
-      changeEncoderMode();
+      
     }
     if (enc1.isTurn())
     {
@@ -142,10 +181,7 @@ void encoder_Task(void *parameter)
     }
     if (enc1.isClick())
     {
-      if (current_band == 0)
-      {
-        scanUp();
-      }
+        changeEncoderMode();
     }
     if (enc1.isDouble())
     {
@@ -228,12 +264,24 @@ void clock_Task(void *parameter)
 void receiver_ctrl_Task(void *parameter)
 {
   receiver_setup();
+  lv_obj_add_flag(ui_RDSPanel, LV_OBJ_FLAG_HIDDEN);
+  xRDSTimer = xTimerCreate(
+      /* Text name for the software timer - not used by FreeRTOS. */
+      "AutoReload",
+      /* The software timer's period in ticks. */
+      RDS_PERIOD,
+      /* Setting uxAutoRealod to pdTRUE creates an auto-reload timer. */
+      pdTRUE,
+      /* This example does not use the timer id. */
+      0,
+      /* The callback function to be used by the software timer being created. */
+      prvRDSTimerCallback);
+  xRDSTimerStarted = xTimerStart(xRDSTimer, 0);
 
   for (;;)
   {
     updateFrequency();
-    checkRDS();
-    void fm_mono_stereo();
+    fm_mono_stereo();
     vTaskDelay(1000 / portTICK_PERIOD_MS);
   }
   vTaskDelete(NULL);
@@ -248,6 +296,7 @@ void receiver_info_Task(void *parameter)
     sprintf(buffer, "SQ:%lu dBuV", rx.getCurrentRSSI());
     xSemaphoreTake(lv_update_mutex, portMAX_DELAY);
     lv_label_set_text(ui_rssiLabel, buffer);
+    lv_bar_set_value(ui_rssiBar, rx.getCurrentRSSI(), LV_ANIM_OFF);
     xSemaphoreGive(lv_update_mutex);
     sprintf(buffer, "SNR:%lu dB", rx.getCurrentSNR());
     xSemaphoreTake(lv_update_mutex, portMAX_DELAY);
@@ -269,14 +318,19 @@ void stopAutoResetEncoderModeTimer()
   xAutoResetEncoderModeTimerStarted = xTimerStop(xAutoResetEncoderModeTimer, 0);
 }
 
+static void prvRDSTimerCallback(TimerHandle_t xTimer)
+{
+  checkRDS();
+}
+
 static void prvAutoResetEncoderModeTimerCallback(TimerHandle_t xTimer)
 {
   TickType_t xTimeNow;
   /* Obtain the current tick count. */
   xTimeNow = xTaskGetTickCount();
   /* Output a string to show the time at which the callback was executed. */
-  //Serial.print("Auto-reload timer callback executing ");
-  //Serial.println(xTimeNow / 31);
+  // Serial.print("Auto-reload timer callback executing ");
+  // Serial.println(xTimeNow / 31);
   if (current_band == 0)
   {
     if (current_encoder_mode != 0)
@@ -286,4 +340,33 @@ static void prvAutoResetEncoderModeTimerCallback(TimerHandle_t xTimer)
       stopAutoResetEncoderModeTimer();
     }
   }
+}
+
+static void prvIndevTimerCallback(TimerHandle_t xTimer)
+{
+    enc1.tick();
+}
+
+void setupButtons()
+{
+  button_white.setType(LOW_PULL);
+  button_blue.setType(LOW_PULL);
+  button_yellow.setType(LOW_PULL);
+  button_red.setType(LOW_PULL);
+  button_white.setDirection(NORM_OPEN);
+  button_blue.setDirection(NORM_OPEN);
+  button_yellow.setDirection(NORM_OPEN);
+  button_red.setDirection(NORM_OPEN);
+  button_white.setTickMode(AUTO);
+  button_blue.setTickMode(AUTO);
+  button_yellow.setTickMode(AUTO);
+  button_red.setTickMode(AUTO);
+  button_white.setDebounce(BUTTON_DEBOUNCE_TIME);        // настройка антидребезга (по умолчанию 80 мс)
+  button_blue.setDebounce(BUTTON_DEBOUNCE_TIME);
+  button_yellow.setDebounce(BUTTON_DEBOUNCE_TIME);
+  button_red.setDebounce(BUTTON_DEBOUNCE_TIME);
+  button_white.setTimeout(BUTTON_TIMEOUT);
+  button_blue.setTimeout(BUTTON_TIMEOUT);
+  button_yellow.setTimeout(BUTTON_TIMEOUT);
+  button_red.setTimeout(BUTTON_TIMEOUT);  
 }

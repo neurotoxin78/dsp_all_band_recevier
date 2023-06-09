@@ -30,9 +30,13 @@ lv_obj_t * ui_AGCLabel;
 lv_obj_t * ui_stepLabel;
 lv_obj_t * ui_bandwidthLabel;
 lv_obj_t * ui_volumeBar;
+lv_obj_t * ui_rssiBar;
 lv_obj_t * ui_RDSLabel;
 lv_obj_t * ui____initial_actions0;
 lv_style_t style_bg;
+lv_style_t style_bar_bg;
+lv_style_t style_indic_rssi;
+lv_style_t encoder_mode_style;
 lv_style_t style_indic;
 
 ///////////////////// TEST LVGL SETTINGS ////////////////////

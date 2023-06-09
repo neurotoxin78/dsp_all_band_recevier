@@ -9,6 +9,30 @@ extern volatile uint8_t current_band;
 extern volatile uint8_t current_step;
 extern volatile uint8_t current_bandwidth;
 
+typedef struct
+{
+    const char *name;
+    uint8_t value;
+} EncoderMode;
+
+typedef struct
+{
+    const char *name;
+    uint8_t value;
+} Band;
+
+typedef struct
+{
+    const char *name;
+    const char *value;
+} BandWidth;
+
+typedef struct
+{
+    const char *name;
+    uint16_t value;
+} Step;
+
 void receiver_setup();
 void changeEncoderMode();
 void updateFrequency();
