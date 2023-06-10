@@ -1,11 +1,12 @@
 #include <WiFi.h>
 #include <Arduino.h>
 #include <SI4735.h>
+
+
 #define RCV_RESET_PIN GPIO_NUM_15
-#define ADC_PIN GPIO_NUM_35
 #define AM_FUNCTION 1
 #define FM_FUNCTION 0
-#define STARTUP_VOLUME 10
+#define STARTUP_VOLUME 40
 #define LED GPIO_NUM_22
 #define BTN_WHITE GPIO_NUM_26
 #define BTN_BLUE GPIO_NUM_14
@@ -27,7 +28,6 @@ void receiver_ctrl_Task(void *parameter);
 void receiver_info_Task(void *parameter);
 static void prvAutoResetEncoderModeTimerCallback( TimerHandle_t xTimer );
 static void prvRDSTimerCallback(TimerHandle_t xTimer);
-static void prvIndevTimerCallback(TimerHandle_t xTimer);
 void startAutoResetEncoderModeTimer();
 void stopAutoResetEncoderModeTimer();
 void setupButtons();

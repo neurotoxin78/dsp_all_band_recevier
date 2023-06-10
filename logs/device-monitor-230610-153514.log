@@ -1,0 +1,47 @@
+10.175.1.7
+[   779][E][Wire.cpp:481] requestFrom(): NULL buffer pointer
+[   781][E][Wire.cpp:557] read(): NULL RX buffer pointer
+[   781][E][Wire.cpp:422] beginTransmission(): could not acquire lock
+[   787][E][Wire.cpp:526] write(): NULL TX buffer pointer
+[   791][E][Wire.cpp:526] write(): NULL TX buffer pointer
+[   797][E][Wire.cpp:448] endTransmission(): NULL TX buffer pointer
+[   803][E][Wire.cpp:481] requestFrom(): NULL buffer pointer
+[   809][E][Wire.cpp:557] read(): NULL RX buffer pointer
+[   813][E][Wire.cpp:481] requestFrom(): NULL buffer pointer
+The SI473X / SI474X I2C address is 0x11
+[ 18381][E][Wire.cpp:513] requestFrom(): i2cRead returned Error 263
+[ 19385][E][Wire.cpp:513] requestFrom(): i2cRead returned Error 263
+[ 20388][E][Wire.cpp:513] requestFrom(): i2cRead returned Error 263
+[ 21425][E][Wire.cpp:513] requestFrom(): i2cRead returned Error 263
+[ 22428][E][Wire.cpp:513] requestFrom(): i2cRead returned Error 263
+[ 23430][E][Wire.cpp:513] requestFrom(): i2cRead returned Error 263
+[ 24432][E][Wire.cpp:513] requestFrom(): i2cRead returned Error 263
+[ 25434][E][Wire.cpp:513] requestFrom(): i2cRead returned Error 263
+[ 26437][E][Wire.cpp:513] requestFrom(): i2cRead returned Error 263
+[ 27439][E][Wire.cpp:513] requestFrom(): i2cRead returned Error 263
+[ 28441][E][Wire.cpp:513] requestFrom(): i2cRead returned Error 263
+[ 29443][E][Wire.cpp:513] requestFrom(): i2cRead returned Error 263
+[ 30445][E][Wire.cpp:513] requestFrom(): i2cRead returned Error 263
+[ 31447][E][Wire.cpp:513] requestFrom(): i2cRead returned Error 263
+[ 32449][E][Wire.cpp:513] requestFrom(): i2cRead returned Error 263
+[ 33451][E][Wire.cpp:513] requestFrom(): i2cRead returned Error 263
+[ 34453][E][Wire.cpp:513] requestFrom(): i2cRead returned Error 263
+[ 35455][E][Wire.cpp:513] requestFrom(): i2cRead returned Error 263
+[ 36457][E][Wire.cpp:513] requestFrom(): i2cRead returned Error 263
+[ 37459][E][Wire.cpp:513] requestFrom(): i2cRead returned Error 263
+[ 38461][E][Wire.cpp:513] requestFrom(): i2cRead returned Error 263
+[ 39463][E][Wire.cpp:513] requestFrom(): i2cRead returned Error 263
+[ 40465][E][Wire.cpp:513] requestFrom(): i2cRead returned Error 263
+[ 41467][E][Wire.cpp:513] requestFrom(): i2cRead returned Error 263
+[ 42469][E][Wire.cpp:513] requestFrom(): i2cRead returned Error 263
+[ 43471][E][Wire.cpp:513] requestFrom(): i2cRead returned Error 263
+[ 44474][E][Wire.cpp:513] requestFrom(): i2cRead returned Error 263
+[ 45476][E][Wire.cpp:513] requestFrom(): i2cRead returned Error 263
+[ 46478][E][Wire.cpp:513] requestFrom(): i2cRead returned Error 263
+[ 47480][E][Wire.cpp:513] requestFrom(): i2cRead returned Error 263
+[ 48482][E][Wire.cpp:513] requestFrom(): i2cRead returned Error 263
+[ 49485][E][Wire.cpp:513] requestFrom(): i2cRead returned Error 263
+[ 50487][E][Wire.cpp:513] requestFrom(): i2cRead returned Error 263
+[ 51490][E][Wire.cpp:513] requestFrom(): i2cRead returned Error 263
+[ 52492][E][Wire.cpp:513] requestFrom(): i2cRead returned Error 263
+[ 53494][E][Wire.cpp:513] requestFrom(): i2cRead returned Error 263

@@ -1,0 +1,66 @@
+[   777][E][Wire.cpp:481] requestFrom(): NULL buffer pointer
+[   779][E][Wire.cpp:557] read(): NULL RX buffer pointer
+[   779][E][Wire.cpp:422] beginTransmission(): could not acquire lock
+[   783][E][WiFiUdp.cpp:172] beginPacket(): could not get host from dns: 11
+[   791][E][WiFiUdp.cpp:185] endPacket(): could not send data: 118
+[   785][E][Wire.cpp:526] write(): NULL TX buffer pointer
+[   802][E][Wire.cpp:526] write(): NULL TX buffer pointer
+[   808][E][Wire.cpp:448] endTransmission(): NULL TX buffer pointer
+The SI473X / SI474X I2C address is 0x11
+[  1819][E][WiFiUdp.cpp:172] beginPacket(): could not get host from dns: 11
+[  1820][E][WiFiUdp.cpp:185] endPacket(): could not send data: 118
+[  3096][E][WiFiUdp.cpp:172] beginPacket(): could not get host from dns: 11
+[  3097][E][WiFiUdp.cpp:185] endPacket(): could not send data: 118
+[  4370][E][WiFiUdp.cpp:172] beginPacket(): could not get host from dns: 11
+[  4372][E][WiFiUdp.cpp:185] endPacket(): could not send data: 118
+[  5645][E][WiFiUdp.cpp:172] beginPacket(): could not get host from dns: 11
+[  5646][E][WiFiUdp.cpp:185] endPacket(): could not send data: 118
+clkdtclkdtclkdtclkdtclkdtclkdtclkdtclkdtclkdtclkdtclkdtclkdtclkdtclkdtclkdtclkdtclkdt[  6921][E][WiFiUdp.cpp:172] beginPacket(): could not get host from dns: 11
+[  6922][E][WiFiUdp.cpp:185] endPacket(): could not send data: 11ets Jun  8 2016 00:22:57
+
+rst:0x8 (TG1WDT_SYS_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0030,len:1184
+load:0x40078000,len:13192
+load:0x40080400,len:3028
+entry 0x400805e4
+[   771][E][Wire.cpp:481] requestFrom(): NULL buffer pointer
+[   773][E][Wire.cpp:557] read(): NULL RX buffer pointer
+[   773][E][Wire.cpp:422] beginTransmission(): could not acquire lock
+[   777][E][WiFiUdp.cpp:172] beginPacket(): could not get host from dns: 11
+[   785][E][WiFiUdp.cpp:185] endPacket(): could not send data: 118
+[   779][E][Wire.cpp:526] write(): NULL TX buffer pointer
+[   796][E][Wire.cpp:526] write(): NULL TX buffer pointer
+[   802][E][Wire.cpp:448] endTransmission(): NULL TX buffer pointer
+The SI473X / SI474X I2C address is 0x11
+[  1811][E][WiFiUdp.cpp:172] beginPacket(): could not get host from dns: 11
+[  1812][E][WiFiUdp.cpp:185] endPacket(): could not send data: 118
+[  3092][E][WiFiUdp.cpp:172] beginPacket(): could not get host from dns: 11
+[  3093][E][WiFiUdp.cpp:185] endPacket(): could not send data: 118
+10.175.1.7
+clkdtclkdtclkdtclkdtclkdtclkdtclkdtclkdtclkclkdtclkdtclkdtclkdtclkdtclkdtclkclkdtclkdtclkdtclkdtclkdtclkdtclkdtclkdtclkdtclkdtclkdtclkdtclkdtclkclkclkdtclkdtclkdtclkdtclkdtclkdtclkdtclkdtclkdtclkdtclkdtclkdtclkdtclkdtclkdtclkdtclkdtclkdtclkdtclkdtclkdtclkdtclkdtdtclkdtclkdtclkdtclkdtclkdtclkdtdtdtdtclkdtclkdtclkdtclkclkdtclkdtclkdtclkdtclkdtclkdtclkclkdtclkdtclkdtclkdtclkdtclkdtclkdtclkdtclkdtclkdtclkdtclkdtclkdtclkdtclkclkclkdtclkdtclkdtclkdtclkdtclkdtclkdtclkdtclkdtclkdtclkdtclkdtclkdtclkdtclkdtclkdtclkdtclkdtclkdtclkdtclkdtclkdtclkdtclkdtclkdtclkdtclkdtclkdtclkdtclkdtclkdtclkdtclkdtclkdtclkdtclkdtclkdtclkdtclkdtclkdtclkdtclkdtclkclkclkdtclkdtclkdtclkdtclkdtclkdtclkdtclkdtclkdtclkdtclkdtclkdtclkdtclkdtclkdtclkdtclkdtclkdtclkdtclkdtclkclkclkdtclkdtclkdtclkdtclkdtclkdtclkdtclkdtclkdtclkdtclkclkdtclkdtclkdtclkdtclkdtdtclkdtclkdtclkdtclkdtclkdtclkdtclkdtclkdtclkdtclkdtdtdtclkdtclkclkdtclkdtclkclkclkclkdtdtclkclkdtdtdtdtdtdtdtclkdtclkdtclkdtclkdtclkdtclkdtclkdtclkdtclkdtclkdtclkdtclkdtclkdtclkdtclkdtclkdtclkdtclkdtclkdtclkdtclkdtclkdtclkdtclkdtclkdtclkdtclkdtclkdtclkdtclkdtclkdtclkdtclkclk[ 62840][E][Wire.cpp:513] requestFrom(): i2cRead returned Error 263
+clk[ 63843][E][Wire.cpp:513] requestFrom(): i2cRead returned Error 263
+dtclkdtclkdtclkdtclkdtclkdtclkdtclkdtclkdtclkdtclkdtclkdtclkdtclkdtclkdtclkdtclkdtclkdtdtclkdtclkdt[ 64844][E][Wire.cpp:513] requestFrom(): i2cRead returned Error 263
+clkdtclkdtclkdtclkdtclkdtdtdtdtclkdtclkdtclkdtclkdtclkdtclkdtclkdtclkdtclkdtclkdtclkdtclkdtclkdtclkdtclkclkdtclk[ 65847][E][Wire.cpp:513] requestFrom(): i2cRead returned Error 263
+dtclkclkdtclkdtclkdtclkdtclkdtclkdtclkdtclkdtclkdtclkdtclkdtclkdtclkdtclkdtdtclkdtclkdtclkdtclkdtclkdtclkdtclkdtclkdtclkdtclkdtclk[ 66849][E][Wire.cpp:513] requestFrom(): i2cRead returned Error 263
+dtclkdtclkdtclkdtclkdtclkclkdtclkdtclkdtdt[ 67852][E][Wire.cpp:513] requestFrom(): i2cRead returned Error 263
+[ 68853][E][Wire.cpp:513] requestFrom(): i2cRead returned Error 263
+[ 69855][E][Wire.cpp:513] requestFrom(): i2cRead returned Error 263
+[ 70857][E][Wire.cpp:513] requestFrom(): i2cRead returned Error 263
+[ 71858][E][Wire.cpp:513] requestFrom(): i2cRead returned Error 263
+[ 72860][E][Wire.cpp:513] requestFrom(): i2cRead returned Error 263
+[ 73863][E][Wire.cpp:513] requestFrom(): i2cRead returned Error 263
+[ 74865][E][Wire.cpp:513] requestFrom(): i2cRead returned Error 263
+[ 75866][E][Wire.cpp:513] requestFrom(): i2cRead returned Error 263
+[ 76868][E][Wire.cpp:513] requestFrom(): i2cRead returned Error 263
+[ 77869][E][Wire.cpp:513] requestFrom(): i2cRead returned Error 263
+[ 78871][E][Wire.cpp:513] requestFrom(): i2cRead returned Error 263
+[ 79873][E][Wire.cpp:513] requestFrom(): i2cRead returned Error 263
+[ 80875][E][Wire.cpp:513] requestFrom(): i2cRead returned Error 263
+[ 81876][E][Wire.cpp:513] requestFrom(): i2cRead returned Error 263
+[ 82878][E][Wire.cpp:513] requestFrom(): i2cRead returned Error 263
+[ 83879][E][Wire.cpp:513] requestFrom(): i2cRead returned Error 263
+[ 84881][E][Wire.cpp:513] requestFrom(): i2cRead returned Error 263
+[ 85883][E][Wire.cpp:513] requestFrom(): i2cRead returned Error 263

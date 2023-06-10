@@ -55,11 +55,31 @@ void ui_infoScreen_screen_init(void)
     lv_obj_set_style_shadow_color(ui_StatusBarLeft, lv_color_hex(0x838282), LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_shadow_opa(ui_StatusBarLeft, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
 
+    ui_FreqPanel = lv_obj_create(ui_infoScreen);
+    lv_obj_set_width(ui_FreqPanel, 226);
+    lv_obj_set_height(ui_FreqPanel, 80);
+    lv_obj_set_x(ui_FreqPanel, 0);
+    lv_obj_set_y(ui_FreqPanel, 32);
+    lv_obj_set_align(ui_FreqPanel, LV_ALIGN_TOP_MID);
+    lv_obj_clear_flag(ui_FreqPanel, LV_OBJ_FLAG_SCROLLABLE); /// Flags
+    lv_obj_set_style_radius(ui_FreqPanel, 5, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_bg_color(ui_FreqPanel, lv_color_hex(0xc98000), LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_bg_opa(ui_FreqPanel, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_border_color(ui_FreqPanel, lv_color_hex(0xad6e00), LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_border_opa(ui_FreqPanel, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_border_width(ui_FreqPanel, 1, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_shadow_color(ui_FreqPanel, lv_color_hex(0x3E3E3E), LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_shadow_opa(ui_FreqPanel, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_shadow_width(ui_FreqPanel, 2, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_shadow_spread(ui_FreqPanel, 1, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_shadow_ofs_x(ui_FreqPanel, 3, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_shadow_ofs_y(ui_FreqPanel, 3, LV_PART_MAIN | LV_STATE_DEFAULT);
+
     ui_MainPanel = lv_obj_create(ui_infoScreen);
     lv_obj_set_width(ui_MainPanel, 226);
-    lv_obj_set_height(ui_MainPanel, 100);
+    lv_obj_set_height(ui_MainPanel, 80);
     lv_obj_set_x(ui_MainPanel, 0);
-    lv_obj_set_y(ui_MainPanel, 165);
+    lv_obj_set_y(ui_MainPanel, 185);
     lv_obj_set_align(ui_MainPanel, LV_ALIGN_TOP_MID);
     lv_obj_clear_flag(ui_MainPanel, LV_OBJ_FLAG_SCROLLABLE); /// Flags
     lv_obj_set_style_radius(ui_MainPanel, 5, LV_PART_MAIN | LV_STATE_DEFAULT);
@@ -100,12 +120,12 @@ void ui_infoScreen_screen_init(void)
     lv_obj_set_style_text_align(ui_clockLabel, LV_TEXT_ALIGN_CENTER, LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_text_font(ui_clockLabel, &ui_font_FontDSEG18, LV_PART_MAIN | LV_STATE_DEFAULT);
 
-    ui_freqLabel = lv_label_create(ui_MainPanel);
+    ui_freqLabel = lv_label_create(ui_FreqPanel);
     lv_obj_set_width(ui_freqLabel, 200);
     lv_obj_set_height(ui_freqLabel, 50);
-    lv_obj_set_x(ui_freqLabel, -30);
-    lv_obj_set_y(ui_freqLabel, 0);
     lv_obj_set_align(ui_freqLabel, LV_ALIGN_CENTER);
+    lv_obj_set_x(ui_freqLabel, -30);
+    lv_obj_set_y(ui_freqLabel, 6);
     lv_label_set_text(ui_freqLabel, "___._");
     lv_label_set_recolor(ui_freqLabel, "true");
     lv_obj_set_style_text_color(ui_freqLabel, lv_color_hex(0xFFFFFF), LV_PART_MAIN | LV_STATE_DEFAULT);
@@ -113,10 +133,10 @@ void ui_infoScreen_screen_init(void)
     lv_obj_set_style_text_align(ui_freqLabel, LV_TEXT_ALIGN_RIGHT, LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_text_font(ui_freqLabel, &ui_font_FontDSEG32, LV_PART_MAIN | LV_STATE_DEFAULT);
 
-    ui_freq_unitLabel = lv_label_create(ui_MainPanel);
+    ui_freq_unitLabel = lv_label_create(ui_FreqPanel);
     lv_obj_set_width(ui_freq_unitLabel, 50);
     lv_obj_set_height(ui_freq_unitLabel, 20);
-    lv_obj_set_x(ui_freq_unitLabel, 86);
+    lv_obj_set_x(ui_freq_unitLabel, 82);
     lv_obj_set_y(ui_freq_unitLabel, 0);
     lv_obj_set_align(ui_freq_unitLabel, LV_ALIGN_CENTER);
     lv_label_set_text(ui_freq_unitLabel, "MHz");
@@ -126,7 +146,7 @@ void ui_infoScreen_screen_init(void)
     lv_obj_set_style_text_align(ui_freq_unitLabel, LV_TEXT_ALIGN_RIGHT, LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_text_font(ui_freq_unitLabel, &lv_font_montserrat_16, LV_PART_MAIN | LV_STATE_DEFAULT);
 
-    ui_bandLabel = lv_label_create(ui_MainPanel);
+    ui_bandLabel = lv_label_create(ui_FreqPanel);
     lv_obj_set_width(ui_bandLabel, 50);
     lv_obj_set_height(ui_bandLabel, 20);
     lv_obj_set_x(ui_bandLabel, -8);
@@ -198,7 +218,7 @@ void ui_infoScreen_screen_init(void)
     lv_obj_set_size(ui_rssiBar, 12, 50);
     lv_obj_set_align(ui_rssiBar, LV_ALIGN_LEFT_MID);
     lv_obj_set_x(ui_rssiBar, -8);
-    lv_obj_set_y(ui_rssiBar, 3);
+    lv_obj_set_y(ui_rssiBar, -10);
     lv_bar_set_range(ui_rssiBar, 0, 127);
 
     ui_snrLabel = lv_label_create(ui_MainPanel);

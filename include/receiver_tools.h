@@ -8,6 +8,7 @@ extern volatile uint8_t current_encoder_mode;
 extern volatile uint8_t current_band;
 extern volatile uint8_t current_step;
 extern volatile uint8_t current_bandwidth;
+extern volatile uint8_t current_volume;
 
 typedef struct
 {
@@ -61,3 +62,5 @@ void checkRDS();
 void fm_mono_stereo();
 void loadSSB();
 void updateAGC();
+void encoderRight();
+void encoderLeft();

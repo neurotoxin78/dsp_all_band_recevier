@@ -11,6 +11,7 @@
 #include "receiver_tools.h"
 #include "GyverButton.h"
 
+
 GButton button_white(BTN_WHITE);
 GButton button_blue(BTN_BLUE);
 GButton button_yellow(BTN_YELLOW);
@@ -25,8 +26,7 @@ TimerHandle_t xAutoResetEncoderModeTimer;
 BaseType_t xAutoResetEncoderModeTimerStarted;
 TimerHandle_t xRDSTimer;
 BaseType_t xRDSTimerStarted;
-TimerHandle_t xIndevTimer;
-BaseType_t xIndevTimerStarted;
+
 
 SI4735 rx;
 
@@ -52,7 +52,7 @@ void runTasks()
   xTaskCreatePinnedToCore(conInfo_Task, "ConnectionInfo", 8192, NULL, 1, &con_info_TaskHandler, 0);
   xTaskCreatePinnedToCore(freeMem_Task, "FreeMem", 8192, NULL, 1, &freeMem_TaskHandler, 0);
   xTaskCreatePinnedToCore(clock_Task, "Clock", 8192, NULL, 1, &clock_TaskHandler, 0);
-  xTaskCreatePinnedToCore(encoder_Task, "Encoder", 2048, NULL, 1, &encoder_TaskHandler, 0);
+  xTaskCreatePinnedToCore(encoder_Task, "Encoder", 8192, NULL, 1, &encoder_TaskHandler, 0);
   xTaskCreatePinnedToCore(receiver_ctrl_Task, "Receiver_Control", 4096, NULL, 1, &receiver_ctrl_TaskHandler, 1);
   xTaskCreatePinnedToCore(receiver_info_Task, "Receiver_Info", 8192, NULL, 1, &receiver_info_TaskHandler, 1);
 }
@@ -86,7 +86,6 @@ void heartbeat_Task(void *parameter)
 void encoder_Task(void *parameter)
 {
   setupButtons();
-  enc1.setType(TYPE2);
   xAutoResetEncoderModeTimer = xTimerCreate(
       /* Text name for the software timer - not used by FreeRTOS. */
       "AutoReload",
@@ -99,18 +98,6 @@ void encoder_Task(void *parameter)
       /* The callback function to be used by the software timer being created. */
       prvAutoResetEncoderModeTimerCallback);
 
-  xIndevTimer = xTimerCreate(
-      /* Text name for the software timer - not used by FreeRTOS. */
-      "Indev Tick Timer",
-      /* The software timer's period in ticks. */
-      INDEV_TICK_PERIOD,
-      /* Setting uxAutoRealod to pdTRUE creates an auto-reload timer. */
-      pdTRUE,
-      /* This example does not use the timer id. */
-      0,
-      /* The callback function to be used by the software timer being created. */
-      prvIndevTimerCallback);
-  xIndevTimerStarted = xTimerStart(xIndevTimer, 0);
   for (;;)
   {
     if (button_red.isClick())
@@ -121,51 +108,16 @@ void encoder_Task(void *parameter)
     {
       changeStep();
     }
+
     if (enc1.isRight())
     {
-      switch (current_encoder_mode)
-      {
-      case 0:
-        rx.volumeUp();
-        updateVolume();
-        break;
-      case 1:
-        stopAutoResetEncoderModeTimer();
-        rx.frequencyUp();
-        updateFrequency();
-        startAutoResetEncoderModeTimer();
-        break;
-      case 2:
-        stopAutoResetEncoderModeTimer();
-        changeStep();
-        startAutoResetEncoderModeTimer();
-        break;
-      default:
-        break;
-      }
+      //Serial.println("EncoderR");
+      encoderRight();
     }
     if (enc1.isLeft())
     {
-      switch (current_encoder_mode)
-      {
-      case 0:
-        rx.volumeDown();
-        updateVolume();
-        break;
-      case 1:
-        stopAutoResetEncoderModeTimer();
-        rx.frequencyDown();
-        updateFrequency();
-        startAutoResetEncoderModeTimer();
-        break;
-      case 2:
-        stopAutoResetEncoderModeTimer();
-        changeStep();
-        startAutoResetEncoderModeTimer();
-        break;
-      default:
-        break;
-      }
+      //Serial.println("EncoderL");
+      encoderLeft();
     }
     if (enc1.isLeftH())
     {
@@ -181,18 +133,16 @@ void encoder_Task(void *parameter)
     }
     if (enc1.isClick())
     {
+        //Serial.print("EncoderClick");
         changeEncoderMode();
     }
     if (enc1.isDouble())
     {
-      if (current_band == 0)
-      {
-        rx.setFrequency(8400);
-      }
+
     }
     if (enc1.isHolded())
     {
-      changeBand();
+      
     }
     vTaskDelay(pdMS_TO_TICKS(1));
   }
@@ -342,10 +292,6 @@ static void prvAutoResetEncoderModeTimerCallback(TimerHandle_t xTimer)
   }
 }
 
-static void prvIndevTimerCallback(TimerHandle_t xTimer)
-{
-    enc1.tick();
-}
 
 void setupButtons()
 {

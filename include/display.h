@@ -1,9 +1,8 @@
 #include "lvgl.h"
 #include <TFT_eSPI.h> // Hardware-specific library
-#include "GyverEncoder.h"
+
 
 extern TFT_eSPI tft;
-extern Encoder enc1;
 extern lv_indev_t *indev_encoder;
 extern int32_t encoder_counter;
 extern int32_t last_encoder_count;

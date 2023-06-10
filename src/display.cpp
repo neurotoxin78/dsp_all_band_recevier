@@ -1,13 +1,9 @@
 #include "display.h"
 #include "main.h"
 #include "ui/ui.h"
-#include "GyverEncoder.h"
 
-#define CLK GPIO_NUM_33
-#define DT GPIO_NUM_32
-#define SW GPIO_NUM_25
 
-Encoder enc1(CLK, DT, SW);
+
 static lv_indev_drv_t indev_drv;
 lv_indev_t *indev_encoder;
 int32_t encoder_counter = 0;
@@ -86,23 +82,4 @@ void my_print(const char *buf)
     Serial.flush();
 }
 #endif
-
-void encoder_read(lv_indev_drv_t *drv, lv_indev_data_t *data)
-{
-  //Serial.print(data->key);
-  data->enc_diff = last_encoder_count - encoder_counter;
-  //Serial.println(data->enc_diff);
-  last_encoder_count = encoder_counter;
-  //data->enc_diff = 0;
-  
-  if (enc1.isPress())
-  {
-    data->state = LV_INDEV_STATE_PRESSED;
-
-  }
-  else
-  {
-    data->state = LV_INDEV_STATE_RELEASED;
-  }
-}
 

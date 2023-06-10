@@ -32,6 +32,7 @@ extern lv_obj_t * ui_encoder_modeLabel;
 extern lv_obj_t * ui_StatusPanel;
 extern lv_obj_t * ui_StatusBarLeft;
 extern lv_obj_t * ui_MainPanel;
+extern lv_obj_t * ui_FreqPanel;
 extern lv_obj_t * ui_RDSPanel;
 extern lv_obj_t * ui_StatusBarRight;
 extern lv_obj_t * ui_clockLabel;

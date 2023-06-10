@@ -1,0 +1,12 @@
+[ 54343][E][Wire.cpp:513] requestFrom(): i2cRead returned Error 263
+[ 55346][E][Wire.cpp:513] requestFrom(): i2cRead returned Error 263
+[ 56348][E][Wire.cpp:513] requestFrom(): i2cRead returned Error 263
+[ 57352][E][Wire.cpp:513] requestFrom(): i2cRead returned Error 263
+[ 58355][E][Wire.cpp:513] requestFrom(): i2cRead returned Error 263
+[ 59357][E][Wire.cpp:513] requestFrom(): i2cRead returned Error 263
+[ 60359][E][Wire.cpp:513] requestFrom(): i2cRead returned Error 263
+[ 61361][E][Wire.cpp:513] requestFrom(): i2cRead returned Error 263
+[ 62363][E][Wire.cpp:513] requestFrom(): i2cRead returned Error 263
+[ 63365][E][Wire.cpp:513] requestFrom(): i2cRead returned Error 263
+[ 64367][E][Wire.cpp:513] requestFrom(): i2cRead returned Error 263
+[ 65369][E][Wire.cpp:513] requestFrom(): i2cRead returned Error 263
