@@ -31,7 +31,7 @@ extern lv_group_t * encoder_group;
 extern lv_obj_t * ui_encoder_modeLabel;
 extern lv_obj_t * ui_StatusPanel;
 extern lv_obj_t * ui_StatusBarLeft;
-extern lv_obj_t * ui_MainPanel;
+extern lv_obj_t * ui_Dashboard;
 extern lv_obj_t * ui_FreqPanel;
 extern lv_obj_t * ui_RDSPanel;
 extern lv_obj_t * ui_StatusBarRight;
@@ -56,6 +56,8 @@ extern lv_style_t style_indic_rssi;
 extern lv_style_t encoder_mode_style;
 extern lv_style_t style_indic;
 
+
+LV_IMG_DECLARE(ui_img_pixel_bg_png);    // assets\pixel.png
 LV_FONT_DECLARE(ui_font_FontDSEG42);
 LV_FONT_DECLARE(ui_font_FontDSEG48);
 LV_FONT_DECLARE(ui_font_FontDSEG64);

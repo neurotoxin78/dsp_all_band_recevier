@@ -1,6 +1,7 @@
 screens/ui_infoScreen.c
 ui.c
 ui_helpers.c
+images/ui_img_pixel_bg_png.c
 fonts/ui_font_FontDSEG42.c
 fonts/ui_font_FontDSEG48.c
 fonts/ui_font_FontDSEG64.c

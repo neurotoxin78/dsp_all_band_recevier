@@ -16,7 +16,7 @@ lv_group_t * encoder_group;
 lv_obj_t * ui_encoder_modeLabel;
 lv_obj_t * ui_StatusPanel;
 lv_obj_t * ui_StatusBarLeft;
-lv_obj_t * ui_MainPanel;
+lv_obj_t * ui_Dashboard;
 lv_obj_t * ui_FreqPanel;
 lv_obj_t * ui_RDSPanel;
 lv_obj_t * ui_StatusBarRight;
