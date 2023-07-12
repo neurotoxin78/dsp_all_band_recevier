@@ -47,6 +47,7 @@ void setFMband();
 void setAMband();
 void setSWband();
 void setSSBband();
+void changeSSBsubband();
 void changeBandwidth();
 void updateBandwidth();
 void changeStep();

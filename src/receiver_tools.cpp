@@ -11,7 +11,6 @@ const uint16_t size_content = sizeof ssb_patch_content;
 
 volatile uint8_t current_volume;
 
-
 char *rdsMsg;
 char *stationName;
 char *rdsTime;
@@ -21,18 +20,17 @@ char bufferRdsTime[32];
 
 // Steps database. You can change the Steps and numbers of steps here if you need.
 EncoderMode encoder_mode[] = {
-    {"< VOLUME >", 0},
-    {"< TUNING >", 1}};
+    {" VOLUME ", 0},
+    {" TUNING ", 1}};
 
 const int MaxMode = (sizeof encoder_mode / sizeof(EncoderMode)) - 1; // index for max increment / decrement
 volatile uint8_t current_encoder_mode = 0;
 
 Band band[] = {
     {"FM", 0},
-    {"AM", 1}, // VFO and BFO min. increment / decrement
+    {"AM", 1},
     {"SW", 2},
-    //{"SSB", 3}
-};
+    {"SSB", 3}};
 
 const int MaxBands = (sizeof band / sizeof(Band)) - 1;
 volatile uint8_t current_band = 0;
@@ -122,7 +120,6 @@ void encoderLeft()
     }
 }
 
-
 void changeEncoderMode()
 {
     uint8_t limiter = 0;
@@ -159,8 +156,11 @@ void receiver_setup()
     rx.setMaxDelayPowerUp(500);
     rx.setMaxDelaySetFrequency(50);
     rx.setup(RCV_RESET_PIN, FM_FUNCTION);
-    rx.setI2CStandardMode();
-    // loadSSB();
+    rx.setI2CFastMode();
+    // rx.setI2CStandardMode();
+    // rx.setI2CLowSpeedMode();
+    loadSSB();
+    vTaskDelay(500);
     setFMband();
     vTaskDelay(500);
     rx.setVolume(STARTUP_VOLUME);
@@ -206,8 +206,9 @@ void updateEncoderMode()
 
 void updateFrequency()
 {
-    uint16_t raw_freq = rx.getCurrentFrequency();
+    uint16_t raw_freq = rx.getFrequency();
     String fmfreq = disp_freq(raw_freq);
+
     if (current_band == 0)
     {
         xSemaphoreTake(lv_update_mutex, portMAX_DELAY);
@@ -217,7 +218,7 @@ void updateFrequency()
     else
     {
         xSemaphoreTake(lv_update_mutex, portMAX_DELAY);
-        lv_label_set_text(ui_freqLabel, String(raw_freq).c_str());
+        lv_label_set_text(ui_freqLabel, String((float)rx.getFrequency() / 1000, 3).c_str());
         xSemaphoreGive(lv_update_mutex);
     }
 }
@@ -296,6 +297,9 @@ void switchBand()
     case 2:
         setSWband();
         break;
+    case 3:
+        setSSBband();
+        break;
     default:
         break;
     }
@@ -303,11 +307,11 @@ void switchBand()
 
 void setFMband()
 {
-    rx.setFM(8600, 10800, 9850, 10);
-    rx.setFmStereoOn();
-    rx.setSeekAmRssiThreshold(0);
-    rx.setSeekAmSNRThreshold(10);
-    // rx.setAutomaticGainControl(1,0);
+    rx.setFM(8600, 10800, 10000, 10); // 100FM
+    // rx.setFmStereoOn();
+    // rx.setSeekAmRssiThreshold(0);
+    // rx.setSeekAmSNRThreshold(10);
+    rx.setAutomaticGainControl(1, 0);
 }
 
 void setAMband()
@@ -330,8 +334,17 @@ void setSSBband()
     rx.setTuneFrequencyAntennaCapacitor(1); // Set antenna tuning capacitor for SW.
     rx.setSSB(band_ssb[currentFreqIdx].minimumFreq, band_ssb[currentFreqIdx].maximumFreq, band_ssb[currentFreqIdx].currentFreq, band_ssb[currentFreqIdx].currentStep, band_ssb[currentFreqIdx].currentSSB);
     delay(100);
-    // currentFrequency = rx.getFrequency();
     rx.setAvcAmMaxGain(60);
+}
+
+void changeSSBsubband()
+{
+    if (currentFreqIdx != lastBand)
+        currentFreqIdx += 1;
+    else
+        currentFreqIdx = 0;
+    updateFrequency();
+    rx.setSSB(band_ssb[currentFreqIdx].minimumFreq, band_ssb[currentFreqIdx].maximumFreq, band_ssb[currentFreqIdx].currentFreq, band_ssb[currentFreqIdx].currentStep, band_ssb[currentFreqIdx].currentSSB);
 }
 
 void changeBand()
@@ -365,10 +378,19 @@ void scanDown()
 
 void showFrequency(uint16_t freq)
 {
+    if (current_band == 0)
+    {
+        xSemaphoreTake(lv_update_mutex, portMAX_DELAY);
+        lv_label_set_text(ui_freqLabel, String(freq / 100.0, 2).c_str());
+        xSemaphoreGive(lv_update_mutex);
+    }
+    else
+    {
+        xSemaphoreTake(lv_update_mutex, portMAX_DELAY);
+        lv_label_set_text(ui_freqLabel, String(freq).c_str());
+        xSemaphoreGive(lv_update_mutex);
+    }
 
-    xSemaphoreTake(lv_update_mutex, portMAX_DELAY);
-    lv_label_set_text(ui_freqLabel, String(freq / 100.0, 2).c_str());
-    xSemaphoreGive(lv_update_mutex);
     // Serial.print(String(freq / 100.0, 2));
     // Serial.println("MHz ");
 }

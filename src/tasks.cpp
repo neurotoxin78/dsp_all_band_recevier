@@ -108,15 +108,30 @@ void encoder_Task(void *parameter)
     {
       changeStep();
     }
-
-    if (enc1.isRight())
+    if (button_blue.isClick())
     {
-      //Serial.println("EncoderR");
-      encoderRight();
+      scanUp();
     }
+    if (button_blue.isHold())
+    {
+      scanDown();
+    }    
+    if (button_white.isClick())
+    {
+      if (current_band == 3)
+      {
+        changeSSBsubband();
+        Serial.println("Subband changed");
+      }
+      
+    }
+
     if (enc1.isLeft())
     {
-      //Serial.println("EncoderL");
+      encoderRight();
+    }
+    if (enc1.isRight())
+    {
       encoderLeft();
     }
     if (enc1.isLeftH())
@@ -138,7 +153,7 @@ void encoder_Task(void *parameter)
     }
     if (enc1.isDouble())
     {
-
+        switchBand();
     }
     if (enc1.isHolded())
     {

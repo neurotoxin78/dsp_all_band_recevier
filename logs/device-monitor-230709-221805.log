@@ -1,0 +1,53 @@
+ets Jun  8 2016 00:22:57
+
+rst:0x1 (POWERON_RESET),boot:0x17 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0030,len:1184
+load:0x40078000,len:13192
+load:0x40080400,len:3028
+entry 0x400805e4
+10.175.1.7
+[   784][E][Wire.cpp:481] requestFrom(): NULL buffer pointer
+[   786][E][Wire.cpp:557] read(): NULL RX buffer pointer
+[   786][E][Wire.cpp:422] beginTransmission(): could not acquire lock
+[   792][E][Wire.cpp:526] write(): NULL TX buffer pointer
+[   796][E][Wire.cpp:526] write(): NULL TX buffer pointer
+[   802][E][Wire.cpp:448] endTransmission(): NULL TX buffer pointer
+[   808][E][Wire.cpp:481] requestFrom(): NULL buffer pointer
+[   814][E][Wire.cpp:557] read(): NULL RX buffer pointer
+[   818][E][Wire.cpp:481] requestFrom(): NULL buffer pointer
+The SI473X / SI474X I2C address is 0x11
+ets Jun  8 2016 00:22:57
+
+rst:0x1 (POWERON_RESET),boot:0x17 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0030,len:1184
+load:0x40078000,len:13192
+load:0x40080400,len:3028
+entry 0x400805e4
+ets Jun  8 2016 00:22:57
+
+rst:0x1 (POWERON_RESET),boot:0x17 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0030,len:1184
+load:0x40078000,len:13192
+load:0x40080400,len:3028
+entry 0x400805e4
+[   778][E][Wire.cpp:481] requestFrom(): NULL buffer pointer
+[   780][E][Wire.cpp:557] read(): NULL RX buffer pointer
+[   780][E][Wire.cpp:422] beginTransmission(): could not acquire lock
+[   786][E][Wire.cpp:526] write(): NULL TX buffer pointer
+[   782][E][WiFiUdp.cpp:172] beginPacket(): could not get host from dns: 11
+[   798][E][WiFiUdp.cpp:185] endPacket(): could not send data: 118
+[   790][E][Wire.cpp:526] write(): NULL TX buffer pointer
+[   808][E][Wire.cpp:448] endTransmission(): NULL TX buffer pointer
+The SI473X / SI474X I2C address is 0x11
+[  1826][E][WiFiUdp.cpp:172] beginPacket(): could not get host from dns: 11
+[  1827][E][WiFiUdp.cpp:185] endPacket(): could not send data: 118
+10.175.1.7
