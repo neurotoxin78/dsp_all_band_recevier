@@ -33,6 +33,8 @@ lv_obj_t * ui_bandwidthLabel;
 lv_obj_t * ui_volumeBar;
 lv_obj_t * ui_rssiBar;
 lv_obj_t * ui_RDSLabel;
+lv_obj_t * ui_RDSMessageLabel;
+lv_obj_t * ui_RDSMessagePanel;
 lv_obj_t * ui____initial_actions0;
 lv_style_t style_bg;
 lv_style_t style_bar_bg;

@@ -127,7 +127,7 @@ void ui_infoScreen_screen_init(void)
     lv_obj_set_height(ui_freqLabel, 50);
     lv_obj_set_align(ui_freqLabel, LV_ALIGN_CENTER);
     lv_obj_set_x(ui_freqLabel, -30);
-    lv_obj_set_y(ui_freqLabel, 6);
+    lv_obj_set_y(ui_freqLabel, -6);
     lv_label_set_text(ui_freqLabel, "___._");
     lv_label_set_recolor(ui_freqLabel, "true");
     lv_obj_set_style_text_color(ui_freqLabel, lv_color_hex(0xFFFFFF), LV_PART_MAIN | LV_STATE_DEFAULT);
@@ -139,7 +139,7 @@ void ui_infoScreen_screen_init(void)
     lv_obj_set_width(ui_freq_unitLabel, 50);
     lv_obj_set_height(ui_freq_unitLabel, 20);
     lv_obj_set_x(ui_freq_unitLabel, 82);
-    lv_obj_set_y(ui_freq_unitLabel, 0);
+    lv_obj_set_y(ui_freq_unitLabel, -6);
     lv_obj_set_align(ui_freq_unitLabel, LV_ALIGN_CENTER);
     lv_label_set_text(ui_freq_unitLabel, "MHz");
     lv_label_set_recolor(ui_freq_unitLabel, "true");
@@ -187,17 +187,17 @@ void ui_infoScreen_screen_init(void)
     lv_obj_set_style_text_align(ui_bandwidthLabel, LV_TEXT_ALIGN_RIGHT, LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_text_font(ui_bandwidthLabel, &lv_font_montserrat_14, LV_PART_MAIN | LV_STATE_DEFAULT);
 
-    ui_stereoLabel = lv_label_create(ui_Dashboard);
-    lv_obj_set_width(ui_stereoLabel, 150);
+    ui_stereoLabel = lv_label_create(ui_FreqPanel);
+    lv_obj_set_width(ui_stereoLabel, 60);
     lv_obj_set_height(ui_stereoLabel, 20);
-    lv_obj_set_x(ui_stereoLabel, -65);
-    lv_obj_set_y(ui_stereoLabel, -12);
-    lv_obj_set_align(ui_stereoLabel, LV_ALIGN_TOP_MID);
+    lv_obj_set_x(ui_stereoLabel, -7);
+    lv_obj_set_y(ui_stereoLabel, -5);
+    lv_obj_set_align(ui_stereoLabel, LV_ALIGN_LEFT_MID);
     lv_label_set_text(ui_stereoLabel, "MONO");
     lv_label_set_recolor(ui_stereoLabel, "true");
     lv_obj_set_style_text_color(ui_stereoLabel, lv_color_hex(0xFFFFFF), LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_text_opa(ui_stereoLabel, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_text_align(ui_stereoLabel, LV_TEXT_ALIGN_RIGHT, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_text_align(ui_stereoLabel, LV_TEXT_ALIGN_LEFT, LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_text_font(ui_stereoLabel, &lv_font_montserrat_14, LV_PART_MAIN | LV_STATE_DEFAULT);
 
     ui_rssiLabel = lv_label_create(ui_Dashboard);
@@ -280,11 +280,11 @@ void ui_infoScreen_screen_init(void)
     lv_obj_set_style_text_align(ui_encoder_modeLabel, LV_TEXT_ALIGN_CENTER, 0);
     lv_obj_set_style_text_font(ui_encoder_modeLabel, &lv_font_montserrat_16, LV_PART_MAIN | LV_STATE_DEFAULT);
 
-    ui_RDSPanel = lv_obj_create(ui_infoScreen);
-    lv_obj_set_width(ui_RDSPanel, 228);
-    lv_obj_set_height(ui_RDSPanel, 30);
+    ui_RDSPanel = lv_obj_create(ui_FreqPanel);
+    lv_obj_set_width(ui_RDSPanel, 218);
+    lv_obj_set_height(ui_RDSPanel, 28);
     lv_obj_set_x(ui_RDSPanel, 0);
-    lv_obj_set_y(ui_RDSPanel, 135);
+    lv_obj_set_y(ui_RDSPanel, 34);
     lv_obj_set_align(ui_RDSPanel, LV_ALIGN_TOP_MID);
     lv_obj_clear_flag(ui_RDSPanel, LV_OBJ_FLAG_SCROLLABLE); /// Flags
     lv_obj_set_style_radius(ui_RDSPanel, 6, LV_PART_MAIN | LV_STATE_DEFAULT);
@@ -292,28 +292,60 @@ void ui_infoScreen_screen_init(void)
     lv_obj_set_style_bg_opa(ui_RDSPanel, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_border_color(ui_RDSPanel, lv_color_hex(0x704426), LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_border_opa(ui_RDSPanel, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_border_width(ui_RDSPanel, 2, LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_shadow_color(ui_RDSPanel, lv_color_hex(0x3E3E3E), LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_shadow_opa(ui_RDSPanel, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_shadow_width(ui_RDSPanel, 1, LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_shadow_spread(ui_RDSPanel, 1, LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_shadow_ofs_x(ui_RDSPanel, 2, LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_shadow_ofs_y(ui_RDSPanel, 2, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_border_width(ui_RDSPanel, 1, LV_PART_MAIN | LV_STATE_DEFAULT);
+    //lv_obj_set_style_shadow_color(ui_RDSPanel, lv_color_hex(0x3E3E3E), LV_PART_MAIN | LV_STATE_DEFAULT);
+    //lv_obj_set_style_shadow_opa(ui_RDSPanel, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
+    //lv_obj_set_style_shadow_width(ui_RDSPanel, 1, LV_PART_MAIN | LV_STATE_DEFAULT);
+    //lv_obj_set_style_shadow_spread(ui_RDSPanel, 1, LV_PART_MAIN | LV_STATE_DEFAULT);
+    //lv_obj_set_style_shadow_ofs_x(ui_RDSPanel, 2, LV_PART_MAIN | LV_STATE_DEFAULT);
+    //lv_obj_set_style_shadow_ofs_y(ui_RDSPanel, 2, LV_PART_MAIN | LV_STATE_DEFAULT);
 
     ui_RDSLabel = lv_label_create(ui_RDSPanel);
-    lv_obj_set_width(ui_RDSLabel, 220);
+    lv_obj_set_width(ui_RDSLabel, 206);
     lv_obj_set_height(ui_RDSLabel, 24);
     lv_obj_set_x(ui_RDSLabel, -10);
     lv_obj_set_y(ui_RDSLabel, -12);
     lv_obj_set_align(ui_RDSLabel, LV_ALIGN_TOP_LEFT);
-    lv_label_set_text(ui_RDSLabel, "RDS TEXT THERE");
+    lv_label_set_text(ui_RDSLabel, "RDS Station Name");
     lv_label_set_recolor(ui_RDSLabel, "true");
     lv_obj_set_style_text_color(ui_RDSLabel, lv_color_hex(0xFFFFFF), LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_text_opa(ui_RDSLabel, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_text_align(ui_RDSLabel, LV_TEXT_ALIGN_LEFT, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_text_align(ui_RDSLabel, LV_TEXT_ALIGN_CENTER, LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_text_font(ui_RDSLabel, &lv_font_montserrat_20, LV_PART_MAIN | LV_STATE_DEFAULT);
-    // lv_obj_set_style_border_color(ui_RDSLabel, lv_color_hex(0x704426), LV_PART_MAIN | LV_STATE_DEFAULT);
-    // lv_obj_set_style_border_width(ui_RDSLabel, 2, LV_PART_MAIN | LV_STATE_DEFAULT);
+
+    ui_RDSMessagePanel = lv_obj_create(ui_infoScreen);
+    lv_obj_set_width(ui_RDSMessagePanel, 226);
+    lv_obj_set_height(ui_RDSMessagePanel, 56);
+    lv_obj_set_x(ui_RDSMessagePanel, 0);
+    lv_obj_set_y(ui_RDSMessagePanel, -10);
+    lv_obj_set_align(ui_RDSMessagePanel, LV_ALIGN_CENTER);
+    lv_obj_clear_flag(ui_RDSMessagePanel, LV_OBJ_FLAG_SCROLLABLE); /// Flags
+    lv_obj_set_style_radius(ui_RDSMessagePanel, 6, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_bg_color(ui_RDSMessagePanel, lv_color_hex(0x5c7d6d), LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_bg_opa(ui_RDSMessagePanel, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_border_color(ui_RDSMessagePanel, lv_color_hex(0x5c7d6d), LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_border_opa(ui_RDSMessagePanel, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_border_width(ui_RDSMessagePanel, 1, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_shadow_color(ui_RDSMessagePanel, lv_color_hex(0x3E3E3E), LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_shadow_opa(ui_RDSMessagePanel, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_shadow_width(ui_RDSMessagePanel, 1, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_shadow_spread(ui_RDSMessagePanel, 1, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_shadow_ofs_x(ui_RDSMessagePanel, 2, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_shadow_ofs_y(ui_RDSMessagePanel, 2, LV_PART_MAIN | LV_STATE_DEFAULT);
+
+    ui_RDSMessageLabel = lv_label_create(ui_RDSMessagePanel);
+    lv_obj_set_width(ui_RDSMessageLabel, 206);
+    lv_obj_set_height(ui_RDSMessageLabel, 50);
+    lv_obj_set_x(ui_RDSMessageLabel, -10);
+    lv_obj_set_y(ui_RDSMessageLabel, -12);
+    lv_obj_set_align(ui_RDSMessageLabel, LV_ALIGN_TOP_LEFT);
+    lv_label_set_text(ui_RDSMessageLabel, "RDS Message");
+    lv_label_set_recolor(ui_RDSMessageLabel, "true");
+    lv_obj_set_style_text_color(ui_RDSMessageLabel, lv_color_hex(0xFFFFFF), LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_text_opa(ui_RDSMessageLabel, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_text_align(ui_RDSMessageLabel, LV_TEXT_ALIGN_CENTER, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_text_font(ui_RDSMessageLabel, &lv_font_montserrat_20, LV_PART_MAIN | LV_STATE_DEFAULT);
+
 
     lv_style_init(&style_bar_bg);
     lv_style_set_bg_color(&style_bar_bg, lv_color_hex(0x454545));

@@ -57,6 +57,12 @@ BandWidth bandwidth[] = {
 const int MaxBandwidths = (sizeof bandwidth / sizeof(Band)) - 1;
 volatile uint8_t current_bandwidth = 0;
 
+// SSB
+uint8_t bandwidthIdx_ssb = 2;
+const char *bandwidth_ssb[] = {"1.2", "2.2", "3.0", "4.0", "0.5", "1.0"};
+int currentBFO = 0;
+uint8_t currentBFOStep = 25;
+
 typedef struct
 {
     uint16_t minimumFreq;
@@ -81,6 +87,19 @@ BandSSB band_ssb[] = {
 const int lastBand = (sizeof band_ssb / sizeof(BandSSB)) - 1;
 // int currentFreqIdx = 9;
 int currentFreqIdx = 2;
+
+void ssbBandwidth()
+{
+    bandwidthIdx_ssb++;
+    if (bandwidthIdx_ssb > 5)
+        bandwidthIdx_ssb = 0;
+    rx.setSSBAudioBandwidth(bandwidthIdx_ssb);
+    // If audio bandwidth selected is about 2 kHz or below, it is recommended to set Sideband Cutoff Filter to 0.
+    if (bandwidthIdx_ssb == 0 || bandwidthIdx_ssb == 4 || bandwidthIdx_ssb == 5)
+        rx.setSSBSidebandCutoffFilter(0);
+    else
+        rx.setSSBSidebandCutoffFilter(1);
+}
 
 void encoderRight()
 {
@@ -157,25 +176,14 @@ void receiver_setup()
     rx.setMaxDelaySetFrequency(50);
     rx.setup(RCV_RESET_PIN, FM_FUNCTION);
     rx.setI2CFastMode();
-    // rx.setI2CStandardMode();
-    // rx.setI2CLowSpeedMode();
-    loadSSB();
     vTaskDelay(500);
     setFMband();
-    vTaskDelay(500);
     rx.setVolume(STARTUP_VOLUME);
     updateEncoderMode();
     updateFrequency();
     updateVolume();
     updateStep();
     updateBand();
-}
-
-void loadSSB()
-{
-    rx.setI2CFastModeCustom(500000);               // Increase the transfer I2C speed
-    rx.loadPatch(ssb_patch_content, size_content); // It is a legacy function. See loadCompressedPatch
-    rx.setI2CFastMode();                           // Set standard transfer I2C speed
 }
 
 void updateBand()
@@ -263,9 +271,18 @@ void changeBandwidth()
 
 void updateBandwidth()
 {
-    xSemaphoreTake(lv_update_mutex, portMAX_DELAY);
-    lv_label_set_text(ui_bandwidthLabel, bandwidth[current_bandwidth].name);
-    xSemaphoreGive(lv_update_mutex);
+    if (current_band == 3)
+    {
+        xSemaphoreTake(lv_update_mutex, portMAX_DELAY);
+        lv_label_set_text(ui_bandwidthLabel, bandwidth_ssb[bandwidthIdx_ssb]);
+        xSemaphoreGive(lv_update_mutex);
+    }
+    else
+    {
+        xSemaphoreTake(lv_update_mutex, portMAX_DELAY);
+        lv_label_set_text(ui_bandwidthLabel, bandwidth[current_bandwidth].name);
+        xSemaphoreGive(lv_update_mutex);
+    }
 }
 
 void updateUnits()
@@ -307,10 +324,10 @@ void switchBand()
 
 void setFMband()
 {
-    rx.setFM(8600, 10800, 10000, 10); // 100FM
-    // rx.setFmStereoOn();
-    // rx.setSeekAmRssiThreshold(0);
-    // rx.setSeekAmSNRThreshold(10);
+    // rx.setTuneFrequencyAntennaCapacitor(0);
+    rx.setFM(8600, 10800, 9760, 10); // 100FM
+    rx.setRdsConfig(1, 2, 2, 2, 2);
+    rx.setFmStereoOn();
     rx.setAutomaticGainControl(1, 0);
 }
 
@@ -329,12 +346,29 @@ void setSWband()
     rx.setSeekAmSpacing(1);
 }
 
+void loadSSB()
+{
+    rx.reset();
+    rx.queryLibraryId(); // Is it really necessary here?  Just powerDown() maigh work!
+    rx.patchPowerUp();
+    delay(50);
+    rx.setI2CFastMode(); // Recommended
+    rx.downloadPatch(ssb_patch_content, size_content);
+    rx.setI2CStandardMode(); // goes back to default (100kHz)
+    rx.setSSBConfig(2, 1, 0, 0, 0, 1);
+    delay(25); // Set standard transfer I2C speed
+}
+
 void setSSBband()
 {
+    loadSSB();
     rx.setTuneFrequencyAntennaCapacitor(1); // Set antenna tuning capacitor for SW.
     rx.setSSB(band_ssb[currentFreqIdx].minimumFreq, band_ssb[currentFreqIdx].maximumFreq, band_ssb[currentFreqIdx].currentFreq, band_ssb[currentFreqIdx].currentStep, band_ssb[currentFreqIdx].currentSSB);
     delay(100);
-    rx.setAvcAmMaxGain(60);
+    // rx.setAvcAmMaxGain(60);
+    rx.setSSBAutomaticVolumeControl(1);
+    rx.setSsbSoftMuteMaxAttenuation(0);
+    rx.setSSBSidebandCutoffFilter(0);
 }
 
 void changeSSBsubband()
@@ -420,12 +454,6 @@ void showRDSStation()
     lv_label_set_text(ui_RDSLabel, stationName);
     xSemaphoreGive(lv_update_mutex);
     Serial.println(stationName);
-    // if (strcmp(bufferStatioName, stationName) == 0 ) return;
-    // printValue(5, 110,bufferStatioName, stationName, COLOR_GREEN, 6);
-    // cleanBfoRdsInfo();
-    // oled.setCursor(0, 2);
-    // oled.print(stationName);
-    // strcpy(bufferStatioName, stationName);
     vTaskDelay(250);
 }
 
@@ -439,7 +467,7 @@ void showRDSTime()
     lv_label_set_text(ui_RDSLabel, rdsTime);
     xSemaphoreGive(lv_update_mutex);
     Serial.println(rdsTime);
-    delay(250);
+    vTaskDelay(250);
 }
 
 long stationNameElapsed = millis();
@@ -449,38 +477,51 @@ void checkRDS()
     rx.getRdsStatus();
     if (rx.getRdsReceived())
     {
-        xSemaphoreTake(lv_update_mutex, portMAX_DELAY);
-        lv_obj_clear_flag(ui_RDSPanel, LV_OBJ_FLAG_HIDDEN);
-        xSemaphoreGive(lv_update_mutex);
+        Serial.println("RDS received");
+        showRDSPanels();
+        rdsMsg = "";
+        stationName = "";
+        rdsMsg = "";
         if (rx.getRdsSync() && rx.getRdsSyncFound())
         {
             rdsMsg = rx.getRdsText2A();
             stationName = rx.getRdsText0A();
             rdsTime = rx.getRdsTime();
             if (rdsMsg != NULL)
-                showRDSMsg();
-
-            if ((millis() - stationNameElapsed) > 2000)
             {
-                if (stationName != NULL && rx.getRdsNewBlockA())
-                    showRDSStation();
-                stationNameElapsed = millis();
+                showRDSMsg();
+            }
+            if (stationName != NULL)
+            {
+                showRDSStation();
             }
 
-            if (rdsTime != NULL)
-                showRDSTime();
+            // if ( rdsTime != NULL ) showRDSTime();
         }
     }
     else
     {
-        xSemaphoreTake(lv_update_mutex, portMAX_DELAY);
-        lv_obj_add_flag(ui_RDSPanel, LV_OBJ_FLAG_HIDDEN);
-        xSemaphoreGive(lv_update_mutex);
+        hideRDSPanels();
     }
 }
 
-// lv_obj_clear_flag(ui_RDSPanel, LV_OBJ_FLAG_HIDDEN);
-// lv_obj_add_flag(ui_RDSPanel, LV_OBJ_FLAG_HIDDEN);
+void showRDSPanels(void)
+{
+    xSemaphoreTake(lv_update_mutex, portMAX_DELAY);
+    lv_obj_clear_flag(ui_RDSPanel, LV_OBJ_FLAG_HIDDEN);
+    lv_obj_clear_flag(ui_RDSMessagePanel, LV_OBJ_FLAG_HIDDEN);
+    lv_obj_set_height(ui_FreqPanel, 80);
+    xSemaphoreGive(lv_update_mutex);
+}
+
+void hideRDSPanels(void)
+{
+    xSemaphoreTake(lv_update_mutex, portMAX_DELAY);
+    lv_obj_add_flag(ui_RDSPanel, LV_OBJ_FLAG_HIDDEN);
+    lv_obj_add_flag(ui_RDSMessagePanel, LV_OBJ_FLAG_HIDDEN);
+    lv_obj_set_height(ui_FreqPanel, 56);
+    xSemaphoreGive(lv_update_mutex);
+}
 
 void fm_mono_stereo()
 {

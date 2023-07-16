@@ -48,6 +48,8 @@ extern lv_obj_t * ui_AGCLabel;
 extern lv_obj_t * ui_volumeBar;
 extern lv_obj_t * ui_rssiBar;
 extern lv_obj_t * ui_RDSLabel;
+extern lv_obj_t * ui_RDSMessageLabel;
+extern lv_obj_t * ui_RDSMessagePanel;
 extern lv_obj_t * ui____initial_actions0;
 
 extern lv_style_t style_bg;

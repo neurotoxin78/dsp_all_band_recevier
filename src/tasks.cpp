@@ -110,11 +110,24 @@ void encoder_Task(void *parameter)
     }
     if (button_blue.isClick())
     {
-      scanUp();
+      if (current_band == 0)
+      {
+        scanUp();
+      }
+      if (current_band == 3)
+      {
+        ssbBandwidth();
+        updateBandwidth();
+      }
+      
     }
     if (button_blue.isHold())
     {
-      scanDown();
+      if (current_band == 0)
+      {
+        scanDown();
+      }
+      
     }    
     if (button_white.isClick())
     {
@@ -230,6 +243,7 @@ void receiver_ctrl_Task(void *parameter)
 {
   receiver_setup();
   lv_obj_add_flag(ui_RDSPanel, LV_OBJ_FLAG_HIDDEN);
+  lv_obj_add_flag(ui_RDSMessagePanel, LV_OBJ_FLAG_HIDDEN);
   xRDSTimer = xTimerCreate(
       /* Text name for the software timer - not used by FreeRTOS. */
       "AutoReload",
@@ -285,6 +299,7 @@ void stopAutoResetEncoderModeTimer()
 
 static void prvRDSTimerCallback(TimerHandle_t xTimer)
 {
+  
   checkRDS();
 }
 

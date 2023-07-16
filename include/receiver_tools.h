@@ -9,6 +9,10 @@ extern volatile uint8_t current_band;
 extern volatile uint8_t current_step;
 extern volatile uint8_t current_bandwidth;
 extern volatile uint8_t current_volume;
+extern int currentBFO;
+extern uint8_t currentBFOStep;
+extern uint8_t bandwidthIdx_ssb;
+
 
 typedef struct
 {
@@ -47,6 +51,7 @@ void setFMband();
 void setAMband();
 void setSWband();
 void setSSBband();
+void ssbBandwidth();
 void changeSSBsubband();
 void changeBandwidth();
 void updateBandwidth();
@@ -65,3 +70,5 @@ void loadSSB();
 void updateAGC();
 void encoderRight();
 void encoderLeft();
+void showRDSPanels(void);
+void hideRDSPanels(void);
