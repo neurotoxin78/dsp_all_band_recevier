@@ -17,6 +17,7 @@ char *rdsTime;
 char bufferStatioName[50];
 char bufferRdsMsg[100];
 char bufferRdsTime[32];
+char temp_buffer[150];
 
 // Steps database. You can change the Steps and numbers of steps here if you need.
 EncoderMode encoder_mode[] = {
@@ -329,6 +330,7 @@ void setFMband()
     rx.setRdsConfig(1, 2, 2, 2, 2);
     rx.setFmStereoOn();
     rx.setAutomaticGainControl(1, 0);
+    startRDSTimer();
 }
 
 void setAMband()
@@ -337,6 +339,7 @@ void setAMband()
     rx.setAvcAmMaxGain(48); // Sets the maximum gain for automatic volume control on AM mode.
     rx.setSeekAmLimits(520, 1750);
     rx.setSeekAmSpacing(10); // spacing 10kHz
+    stopRDSTimer();
 }
 
 void setSWband()
@@ -344,6 +347,7 @@ void setSWband()
     rx.setAM(100, 30000, 7200, 5);
     rx.setSeekAmLimits(100, 30000);
     rx.setSeekAmSpacing(1);
+    stopRDSTimer();
 }
 
 void loadSSB()
@@ -369,6 +373,7 @@ void setSSBband()
     rx.setSSBAutomaticVolumeControl(1);
     rx.setSsbSoftMuteMaxAttenuation(0);
     rx.setSSBSidebandCutoffFilter(0);
+    stopRDSTimer();
 }
 
 void changeSSBsubband()
@@ -443,18 +448,19 @@ void showRDSMsg()
         return;
     Serial.println(rdsMsg);
     xSemaphoreTake(lv_update_mutex, portMAX_DELAY);
-    lv_label_set_text(ui_RDSLabel, rdsMsg);
+    lv_label_set_text(ui_RDSMessageLabel, rdsMsg);
     xSemaphoreGive(lv_update_mutex);
     vTaskDelay(250);
 }
 
 void showRDSStation()
 {
+    if (strncmp(bufferStatioName, stationName,3) == 0 ) return;
     xSemaphoreTake(lv_update_mutex, portMAX_DELAY);
     lv_label_set_text(ui_RDSLabel, stationName);
     xSemaphoreGive(lv_update_mutex);
     Serial.println(stationName);
-    vTaskDelay(250);
+    // vTaskDelay(250);
 }
 
 void showRDSTime()
@@ -462,26 +468,24 @@ void showRDSTime()
 
     if (strcmp(bufferRdsTime, rdsTime) == 0)
         return;
-    // printValue(80, 110, bufferRdsTime, rdsTime, COLOR_GREEN, 6);
+    snprintf(temp_buffer, sizeof(temp_buffer), "%s [ %s ]", rdsMsg, rdsTime);
     xSemaphoreTake(lv_update_mutex, portMAX_DELAY);
-    lv_label_set_text(ui_RDSLabel, rdsTime);
+    lv_label_set_text(ui_RDSMessageLabel, temp_buffer);
     xSemaphoreGive(lv_update_mutex);
     Serial.println(rdsTime);
-    vTaskDelay(250);
+    // vTaskDelay(250);
 }
 
 long stationNameElapsed = millis();
 
 void checkRDS()
 {
+    
     rx.getRdsStatus();
+    vTaskDelay(100);
     if (rx.getRdsReceived())
     {
-        Serial.println("RDS received");
         showRDSPanels();
-        rdsMsg = "";
-        stationName = "";
-        rdsMsg = "";
         if (rx.getRdsSync() && rx.getRdsSyncFound())
         {
             rdsMsg = rx.getRdsText2A();
@@ -491,12 +495,16 @@ void checkRDS()
             {
                 showRDSMsg();
             }
-            if (stationName != NULL)
+            if ((millis() - stationNameElapsed) > 2000)
             {
-                showRDSStation();
+                if (stationName != NULL && rx.getRdsNewBlockA())
+                    showRDSStation();
+                stationNameElapsed = millis();
             }
-
-            // if ( rdsTime != NULL ) showRDSTime();
+            if (rdsTime != NULL)
+            {
+                showRDSTime();
+            }
         }
     }
     else
@@ -510,6 +518,8 @@ void showRDSPanels(void)
     xSemaphoreTake(lv_update_mutex, portMAX_DELAY);
     lv_obj_clear_flag(ui_RDSPanel, LV_OBJ_FLAG_HIDDEN);
     lv_obj_clear_flag(ui_RDSMessagePanel, LV_OBJ_FLAG_HIDDEN);
+    lv_obj_set_y(ui_freqLabel, -6);
+    lv_obj_set_y(ui_stereoLabel, -5);
     lv_obj_set_height(ui_FreqPanel, 80);
     xSemaphoreGive(lv_update_mutex);
 }
@@ -519,6 +529,8 @@ void hideRDSPanels(void)
     xSemaphoreTake(lv_update_mutex, portMAX_DELAY);
     lv_obj_add_flag(ui_RDSPanel, LV_OBJ_FLAG_HIDDEN);
     lv_obj_add_flag(ui_RDSMessagePanel, LV_OBJ_FLAG_HIDDEN);
+    lv_obj_set_y(ui_freqLabel, 8);
+    lv_obj_set_y(ui_stereoLabel, 8);
     lv_obj_set_height(ui_FreqPanel, 56);
     xSemaphoreGive(lv_update_mutex);
 }

@@ -19,7 +19,7 @@ GButton button_red(BTN_RED);
 
 // #include <freertos/timers.h>
 #define AUTO_RESET_ENCODER_MODE_PERIOD pdMS_TO_TICKS(5000)
-#define RDS_PERIOD pdMS_TO_TICKS(20000)
+#define RDS_PERIOD pdMS_TO_TICKS(10000)
 #define INDEV_TICK_PERIOD pdMS_TO_TICKS(10)
 
 TimerHandle_t xAutoResetEncoderModeTimer;
@@ -241,9 +241,6 @@ void clock_Task(void *parameter)
 
 void receiver_ctrl_Task(void *parameter)
 {
-  receiver_setup();
-  lv_obj_add_flag(ui_RDSPanel, LV_OBJ_FLAG_HIDDEN);
-  lv_obj_add_flag(ui_RDSMessagePanel, LV_OBJ_FLAG_HIDDEN);
   xRDSTimer = xTimerCreate(
       /* Text name for the software timer - not used by FreeRTOS. */
       "AutoReload",
@@ -255,8 +252,10 @@ void receiver_ctrl_Task(void *parameter)
       0,
       /* The callback function to be used by the software timer being created. */
       prvRDSTimerCallback);
-  xRDSTimerStarted = xTimerStart(xRDSTimer, 0);
-
+  //xRDSTimerStarted = xTimerStart(xRDSTimer, 0);
+  hideRDSPanels();
+  startRDSTimer();
+  receiver_setup();
   for (;;)
   {
     updateFrequency();
@@ -295,6 +294,18 @@ void startAutoResetEncoderModeTimer()
 void stopAutoResetEncoderModeTimer()
 {
   xAutoResetEncoderModeTimerStarted = xTimerStop(xAutoResetEncoderModeTimer, 0);
+}
+
+void startRDSTimer()
+{
+  xRDSTimerStarted = xTimerStart(xRDSTimer, 0);
+  showRDSPanels();
+}
+
+void stopRDSTimer()
+{
+  xRDSTimerStarted = xTimerStop(xRDSTimer, 0);
+  hideRDSPanels();
 }
 
 static void prvRDSTimerCallback(TimerHandle_t xTimer)

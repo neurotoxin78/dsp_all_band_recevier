@@ -31,3 +31,5 @@ static void prvRDSTimerCallback(TimerHandle_t xTimer);
 void startAutoResetEncoderModeTimer();
 void stopAutoResetEncoderModeTimer();
 void setupButtons();
+void startRDSTimer();
+void stopRDSTimer();

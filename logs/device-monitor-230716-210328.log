@@ -1,0 +1,91 @@
+10.175.1.7
+[   776][E][Wire.cpp:481] requestFrom(): NULL buffer pointer
+[   778][E][Wire.cpp:557] read(): NULL RX buffer pointer
+[   779][E][Wire.cpp:422] beginTransmission(): could not acquire lock
+[   784][E][Wire.cpp:526] write(): NULL TX buffer pointer
+[   789][E][Wire.cpp:526] write(): NULL TX buffer pointer
+[   794][E][Wire.cpp:448] endTransmission(): NULL TX buffer pointer
+[   800][E][Wire.cpp:481] requestFrom(): NULL buffer pointer
+[   806][E][Wire.cpp:557] read(): NULL RX buffer pointer
+[   810][E][Wire.cpp:481] requestFrom(): NULL buffer pointer
+The SI473X / SI474X I2C address is 0x11
+Guru Meditation Error: Core  0 panic'ed (StoreProhibited). Exception was unhandled.
+
+Core  0 register dump:
+PC      : 0x400d3252  PS      : 0x00060830  A0      : 0x800d364a  A1      : 0x3ffbd700  
+A2      : 0x00000000  A3      : 0x00000000  A4      : 0x3ffc573c  A5      : 0x3ffc5740  
+A6      : 0x007bf7a0  A7      : 0x003fffff  A8      : 0x3ffd373c  A9      : 0x3ffd373c  
+A10     : 0x3ffd373c  A11     : 0xffffffff  A12     : 0x00060820  A13     : 0x3ffbc700  
+A14     : 0x007d3664  A15     : 0x003fffff  SAR     : 0x00000000  EXCCAUSE: 0x0000001d  
+EXCVADDR: 0x00000000  LBEG    : 0x40089898  LEND    : 0x400898ae  LCOUNT  : 0x00000000  
+
+
+Backtrace: 0x400d324f:0x3ffbd700 0x400d3647:0x3ffbd720 0x4008f04b:0x3ffbd740
+
+
+
+
+ELF file SHA256: e9f58f3c1e8c754c
+
+Rebooting...
+ets Jun  8 2016 00:22:57
+
+rst:0xc (SW_CPU_RESET),boot:0x17 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0030,len:1184
+load:0x40078000,len:13192
+load:0x40080400,len:3028
+entry 0x400805e4
+10.175.1.7
+[   775][E][Wire.cpp:481] requestFrom(): NULL buffer pointer
+[   777][E][Wire.cpp:557] read(): NULL RX buffer pointer
+[   778][E][Wire.cpp:422] beginTransmission(): could not acquire lock
+[   783][E][Wire.cpp:526] write(): NULL TX buffer pointer
+[   788][E][Wire.cpp:526] write(): NULL TX buffer pointer
+[   793][E][Wire.cpp:448] endTransmission(): NULL TX buffer pointer
+[   799][E][Wire.cpp:481] requestFrom(): NULL buffer pointer
+[   805][E][Wire.cpp:557] read(): NULL RX buffer pointer
+[   809][E][Wire.cpp:481] requestFrom(): NULL buffer pointer
+The SI473X / SI474X I2C address is 0x11
+Guru Meditation Error: Core  0 panic'ed (StoreProhibited). Exception was unhandled.
+
+Core  0 register dump:
+PC      : 0x400d3252  PS      : 0x00060a30  A0      : 0x800d364a  A1      : 0x3ffbd700  
+A2      : 0x00000000  A3      : 0x00000000  A4      : 0x3ffc573c  A5      : 0x3ffc5740  
+A6      : 0x007bf7a0  A7      : 0x003fffff  A8      : 0x3ffd373c  A9      : 0x3ffd373c  
+A10     : 0x3ffd373c  A11     : 0xffffffff  A12     : 0x00060a20  A13     : 0x3ffbc700  
+A14     : 0x007d3664  A15     : 0x003fffff  SAR     : 0x00000000  EXCCAUSE: 0x0000001d  
+EXCVADDR: 0x00000000  LBEG    : 0x40089898  LEND    : 0x400898ae  LCOUNT  : 0x00000000  
+
+
+Backtrace: 0x400d324f:0x3ffbd700 0x400d3647:0x3ffbd720 0x4008f04b:0x3ffbd740
+
+
+
+
+ELF file SHA256: e9f58f3c1e8c754c
+
+Rebooting...
+ets Jun  8 2016 00:22:57
+
+rst:0xc (SW_CPU_RESET),boot:0x17 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0030,len:1184
+load:0x40078000,len:13192
+load:0x40080400,len:3028
+entry 0x400805e4
+10.175.1.7
+[   776][E][Wire.cpp:481] requestFrom(): NULL buffer pointer
+[   778][E][Wire.cpp:557] read(): NULL RX buffer pointer
+[   779][E][Wire.cpp:422] beginTransmission(): could not acquire lock
+[   784][E][Wire.cpp:526] write(): NULL TX buffer pointer
+[   789][E][Wire.cpp:526] write(): NULL TX buffer pointer
+[   794][E][Wire.cpp:448] endTransmission(): NULL TX buffer pointer
+[   801][E][Wire.cpp:481] requestFrom(): NULL buffer pointer
+[   806][E][Wire.cpp:557] read(): NULL RX buffer pointer
+[   810][E][Wire.cpp:481] requestFrom(): NULL buffer pointer
+The SI473X / SI474X I2C address is 0x11

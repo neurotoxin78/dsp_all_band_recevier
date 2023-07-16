@@ -1,0 +1,67 @@
+10.175.1.7
+[   777][E][Wire.cpp:481] requestFrom(): NULL buffer pointer
+[   779][E][Wire.cpp:557] read(): NULL RX buffer pointer
+[   779][E][Wire.cpp:422] beginTransmission(): could not acquire lock
+[   785][E][Wire.cpp:526] write(): NULL TX buffer pointer
+[   791][E][Wire.cpp:526] write(): NULL TX buffer pointer
+[   795][E][Wire.cpp:448] endTransmission(): NULL TX buffer pointer
+[   801][E][Wire.cpp:481] requestFrom(): NULL buffer pointer
+[   807][E][Wire.cpp:557] read(): NULL RX buffer pointer
+[   811][E][Wire.cpp:481] requestFrom(): NULL buffer pointer
+The SI473X / SI474X I2C address is 0x11
+
+assert failed: xTimerGenericCommand timers.c:404 (xTimer)
+
+
+Backtrace: 0x40083cd5:0x3ffe3370 0x4008bd7d:0x3ffe3390 0x40091d5d:0x3ffe33b0 0x4008ee49:0x3ffe34e0 0x400d37dd:0x3ffe3510 0x400d2c1b:0x3ffe3530 0x400d33da:0x3ffe3550 0x400d35df:0x3ffe3570
+
+
+
+
+ELF file SHA256: e97e88679b5698a5
+
+Rebooting...
+ets Jun  8 2016 00:22:57
+
+rst:0xc (SW_CPU_RESET),boot:0x17 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0030,len:1184
+load:0x40078000,len:13192
+load:0x40080400,len:3028
+entry 0x400805e4
+10.175.1.7
+[   776][E][Wire.cpp:481] requestFrom(): NULL buffer pointer
+[   778][E][Wire.cpp:557] read(): NULL RX buffer pointer
+[   778][E][Wire.cpp:422] beginTransmission(): could not acquire lock
+[   784][E][Wire.cpp:526] write(): NULL TX buffer pointer
+[   788][E][Wire.cpp:526] write(): NULL TX buffer pointer
+[   794][E][Wire.cpp:448] endTransmission(): NULL TX buffer pointer
+[   800][E][Wire.cpp:481] requestFrom(): NULL buffer pointer
+[   806][E][Wire.cpp:557] read(): NULL RX buffer pointer
+[   810][E][Wire.cpp:481] requestFrom(): NULL buffer pointer
+The SI473X / SI474X I2C address is 0x11
+
+assert failed: xTimerGenericCommand timers.c:404 (xTimer)
+
+
+Backtrace: 0x40083cd5:0x3ffe3370 0x4008bd7d:0x3ffe3390 0x40091d5d:0x3ffe33b0 0x4008ee49:0x3ffe34e0 0x400d37dd:0x3ffe3510 0x400d2c1b:0x3ffe3530 0x400d33da:0x3ffe3550 0x400d35df:0x3ffe3570
+
+
+
+
+ELF file SHA256: e97e88679b5698a5
+
+Rebooting...
+ets Jun  8 2016 00:22:57
+
+rst:0xc (SW_CPU_RESET),boot:0x17 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0030,len:1184
+load:0x40078000,len:13192
+load:0x40080400,len:3028
+entry 0x400805e4
+10.175.1.7

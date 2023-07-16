@@ -306,7 +306,7 @@ void ui_infoScreen_screen_init(void)
     lv_obj_set_x(ui_RDSLabel, -10);
     lv_obj_set_y(ui_RDSLabel, -12);
     lv_obj_set_align(ui_RDSLabel, LV_ALIGN_TOP_LEFT);
-    lv_label_set_text(ui_RDSLabel, "RDS Station Name");
+    lv_label_set_text(ui_RDSLabel, "RDS");
     lv_label_set_recolor(ui_RDSLabel, "true");
     lv_obj_set_style_text_color(ui_RDSLabel, lv_color_hex(0xFFFFFF), LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_text_opa(ui_RDSLabel, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
@@ -339,7 +339,7 @@ void ui_infoScreen_screen_init(void)
     lv_obj_set_x(ui_RDSMessageLabel, -10);
     lv_obj_set_y(ui_RDSMessageLabel, -12);
     lv_obj_set_align(ui_RDSMessageLabel, LV_ALIGN_TOP_LEFT);
-    lv_label_set_text(ui_RDSMessageLabel, "RDS Message");
+    lv_label_set_text(ui_RDSMessageLabel, "");
     lv_label_set_recolor(ui_RDSMessageLabel, "true");
     lv_obj_set_style_text_color(ui_RDSMessageLabel, lv_color_hex(0xFFFFFF), LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_text_opa(ui_RDSMessageLabel, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
