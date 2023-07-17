@@ -1,0 +1,30 @@
+10.175.1.7
+[   773][E][Wire.cpp:481] requestFrom(): NULL buffer pointer
+[   775][E][Wire.cpp:557] read(): NULL RX buffer pointer
+[   775][E][Wire.cpp:422] beginTransmission(): could not acquire lock
+[   781][E][Wire.cpp:526] write(): NULL TX buffer pointer
+[   787][E][Wire.cpp:526] write(): NULL TX buffer pointer
+[   791][E][Wire.cpp:448] endTransmission(): NULL TX buffer pointer
+[   797][E][Wire.cpp:481] requestFrom(): NULL buffer pointer
+[   803][E][Wire.cpp:557] read(): NULL RX buffer pointer
+[   807][E][Wire.cpp:481] requestFrom(): NULL buffer pointer
+[   813][E][Wire.cpp:557] read(): NULL RX buffer pointer
+[   819][E][Wire.cpp:557] read(): NULL RX buffer pointer
+[   823][E][Wire.cpp:557] read(): NULL RX buffer pointer
+[   829][E][Wire.cpp:557] read(): NULL RX buffer pointer
+[   833][E][Wire.cpp:557] read(): NULL RX buffer pointer
+[   839][E][Wire.cpp:557] read(): NULL RX buffer pointer
+[  1006][E][Wire.cpp:481] requestFrom(): NULL buffer pointer
+[  1006][E][Wire.cpp:557] read(): NULL RX buffer pointer
+[  1006][E][Wire.cpp:422] beginTransmission(): could not acquire lock
+[  1012][E][Wire.cpp:526] write(): NULL TX buffer pointer
+[  1018][E][Wire.cpp:448] endTransmission(): NULL TX buffer pointer
+[  1024][E][Wire.cpp:481] requestFrom(): NULL buffer pointer
+[  1028][E][Wire.cpp:557] read(): NULL RX buffer pointer
+[  1034][E][Wire.cpp:481] requestFrom(): NULL buffer pointer
+[  1038][E][Wire.cpp:557] read(): NULL RX buffer pointer
+[  1044][E][Wire.cpp:557] read(): NULL RX buffer pointer
+Si473X not found!
+[  2059][E][Wire.cpp:513] requestFrom(): i2cRead returned Error 263
+[  3065][E][Wire.cpp:513] requestFrom(): i2cRead returned Error 263
+[  4072][E][Wire.cpp:513] requestFrom(): i2cRead returned Error 263
